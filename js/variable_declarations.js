@@ -7,4 +7,4 @@ retryCount += 1; // ok
 if (true) {
   var status = 'running';
 }
-console.log(status); // 'running'
+console.log(status);

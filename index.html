@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -29,10 +29,17 @@
       body {
         margin: 0;
         height: 100%;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system,
-          BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        font-family:
+          Inter,
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
         color: var(--text);
-        background: radial-gradient(
+        background:
+          radial-gradient(
             circle at 15% 20%,
             rgba(102, 227, 255, 0.17),
             transparent 28%
@@ -53,7 +60,7 @@
 
       body::before,
       body::after {
-        content: '';
+        content: "";
         position: fixed;
         inset: auto;
         border-radius: 999px;
@@ -174,7 +181,9 @@
         align-items: stretch;
         opacity: 0;
         transform: translateX(60px) scale(0.985);
-        transition: opacity 0.45s ease, transform 0.55s ease;
+        transition:
+          opacity 0.45s ease,
+          transform 0.55s ease;
         pointer-events: none;
       }
 
@@ -210,7 +219,7 @@
       }
 
       .panel::after {
-        content: '';
+        content: "";
         position: absolute;
         inset: 0;
         background: linear-gradient(
@@ -221,6 +230,26 @@
           rgba(255, 255, 255, 0.04)
         );
         pointer-events: none;
+      }
+
+      .slide-diagram {
+        flex-shrink: 0;
+        margin-bottom: 18px;
+        border-radius: 16px;
+        overflow: hidden;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: rgba(0, 0, 0, 0.18);
+        position: relative;
+        z-index: 1;
+      }
+
+      .slide-diagram img {
+        display: block;
+        width: 100%;
+        height: auto;
+        max-height: min(38vh, 320px);
+        object-fit: contain;
+        object-position: center top;
       }
 
       .slide-grid {
@@ -320,7 +349,7 @@
       }
 
       .orb::before {
-        content: '';
+        content: "";
         position: absolute;
         width: 140px;
         height: 140px;
@@ -440,7 +469,7 @@
       }
 
       .bullet-list li::before {
-        content: '';
+        content: "";
         width: 10px;
         height: 10px;
         border-radius: 50%;
@@ -513,8 +542,9 @@
 
       .code-block {
         padding: 18px 20px;
-        font-family: 'SFMono-Regular', ui-monospace, SFMono-Regular, Menlo,
-          Consolas, monospace;
+        font-family:
+          "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Consolas,
+          monospace;
         font-size: 0.92rem;
         line-height: 1.55;
         overflow: auto;
@@ -793,7 +823,9 @@
         cursor: pointer;
         box-shadow: var(--shadow);
         backdrop-filter: blur(16px);
-        transition: transform 0.18s ease, background 0.18s ease;
+        transition:
+          transform 0.18s ease,
+          background 0.18s ease;
       }
 
       button.nav:hover {
@@ -865,9 +897,8 @@
       <div class="hud">
         <div class="brand">
           <strong>Workshop JS/TS</strong> · JavaScript & TypeScript foundations
-          for QA → QE
         </div>
-        <div class="slide-indicator" id="slideIndicator">1 / 32</div>
+        <div class="slide-indicator" id="slideIndicator">1 / 34</div>
         <div class="hint">
           Use <strong>←</strong> <strong>→</strong> or click the arrows
         </div>
@@ -882,210 +913,199 @@
     <script type="module">
       const slides = [
         {
-          kind: 'cover',
-          eyebrow: 'April 2026',
-          title: 'Workshop JS/TS',
-          subtitle: 'JavaScript & TypeScript foundations for QA → QE',
-          footer: ['Foundations first', 'Real examples', 'Safer test code'],
+          kind: "cover",
+          eyebrow: "April 2026",
+          title: "Workshop JS/TS",
+          subtitle: "JavaScript & TypeScript foundations",
+          footer: ["Foundations first", "Real examples", "Practical patterns"],
         },
         {
-          title: 'Agenda',
-          eyebrow: 'Roadmap',
-          lead: 'A practical path from JavaScript basics to TypeScript patterns you can use in tests, helpers, and API validation.',
+          title: "Agenda",
+          eyebrow: "Roadmap",
+          lead: "A practical path from JavaScript basics to TypeScript patterns for everyday development.",
           agenda: [
             [
-              'JavaScript foundations',
-              'How JS behaves and why that matters in automation.',
+              "JavaScript foundations",
+              "How JS behaves and why that matters in automation.",
             ],
             [
-              'Values, objects, and arrays',
-              'The difference between copying values and sharing references.',
+              "Values, objects, and arrays",
+              "The difference between copying values and sharing references.",
             ],
             [
-              'Conditions, loops & reusable code',
-              'Clearer branching, repetition, and helper functions.',
+              "Conditions, loops & reusable code",
+              "Clearer branching, repetition, and helper functions.",
             ],
             [
-              'Async JavaScript and HTTP',
-              'Promises, await, requests, and the event loop.',
+              "Async JavaScript and HTTP",
+              "Promises, await, requests, and the event loop.",
             ],
             [
-              'Common JavaScript pitfalls for QE',
-              'The bugs that cause flaky tests and runtime surprises.',
+              "Common JavaScript pitfalls",
+              "Surprising behavior and how to avoid it.",
             ],
             [
-              'TypeScript essentials for safer code',
-              'Types, contracts, narrowing, and useful utilities.',
+              "TypeScript essentials for safer code",
+              "Types, contracts, narrowing, and useful utilities.",
             ],
           ],
         },
         {
-          title: 'JS Foundations: Main Characteristics',
-          eyebrow: 'Slide 3',
-          layout: 'equal',
+          title: "JS Foundations: Main Characteristics",
+          eyebrow: "Slide 3",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
               'JavaScript is <span class="highlight">dynamically typed</span>: types are checked at runtime, not ahead of time.',
               'It allows <span class="highlight">type coercion</span>, so values may be converted automatically.',
               'JavaScript runs on a <span class="highlight">single main thread</span> and reacts to events.',
               'Async work is coordinated through the <span class="highlight">event loop</span>.',
-              'The language keeps many old behaviors for web compatibility, so historical quirks still show up today.',
+              "The language keeps many old behaviors for web compatibility, so historical quirks still show up today.",
             ],
           },
           rightCards: [
             [
-              'Dynamic typing',
-              'Like labels added to packages only when they arrive — not before shipping.',
+              "Dynamic typing",
+              "Like labels added to packages only when they arrive — not before shipping.",
             ],
-            ['Single thread', 'Like one cashier serving one person at a time.'],
+            ["Single thread", "Like one cashier serving one person at a time."],
             [
-              'Event-driven',
-              'Requests wait their turn and get handled when the system is free.',
+              "Event-driven",
+              "Requests wait their turn and get handled when the system is free.",
             ],
           ],
           callout:
-            '<strong>Why this matters for QE:</strong> assertion mismatches (<code>"1"</code> vs <code>1</code>), flaky timing, and race conditions often come from these fundamentals.',
+            '<strong>Why this matters:</strong> type coercion (<code>"1"</code> vs <code>1</code>), async timing, and the event loop shape how code behaves at runtime.',
         },
         {
-          title: 'Variable Declarations',
-          eyebrow: 'Slide 4',
-          layout: 'equal',
+          title: "Variable Declarations",
+          eyebrow: "Slide 4",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
               '<span class="highlight">const</span>: use by default.',
               '<span class="highlight">let</span>: use when reassignment is needed.',
               '<span class="danger">var</span>: avoid in modern JavaScript because of function scope and hoisting quirks.',
             ],
           },
-          codeFile: 'js/variable_declarations.js',
+          codeFile: "js/variable_declarations.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> <code>const</code> = passport number, fixed. <code>let</code> = hotel room number, can change. <code>var</code> = old paper notes left around the office — easy to lose track of.',
-          footerNote:
-            'QE angle: predictable setup, less accidental reassignment, and easier debugging.',
+            "<strong>Real-life parallel:</strong> <code>const</code> = passport number, fixed. <code>let</code> = hotel room number, can change. <code>var</code> = old paper notes left around the office — easy to lose track of.",
         },
         {
-          title: 'Primitive Types',
-          eyebrow: 'Slide 5',
-          layout: 'equal',
+          title: "Primitive Types",
+          eyebrow: "Slide 5",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'Primitive values represent simple, single values.',
+              "Primitive values represent simple, single values.",
               'They are <span class="highlight">immutable</span>. You cannot change the primitive itself.',
               'They are stored and compared <span class="highlight">by value</span>.',
-              'Common primitives in day-to-day testing: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>undefined</code>, and <code>null</code>.',
-              'JavaScript also has <code>bigint</code> and <code>symbol</code>.',
+              "Common primitives in day-to-day code: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>undefined</code>, and <code>null</code>.",
+              "JavaScript also has <code>bigint</code> and <code>symbol</code>.",
             ],
           },
           code: `const name = 'Maria';      // string\nconst age = 32;            // number\nconst isAdmin = false;     // boolean\nlet token;                 // undefined\nconst middleName = null;   // null\nconst big = 9007199254740993n; // bigint\nconst id = Symbol('user'); // symbol`,
           callout:
-            '<strong>Real-life parallel:</strong> copying a primitive is like photocopying a boarding pass — each copy stands alone.',
-          footerNote:
-            'QE angle: assertions compare actual values, copies do not share state, and <code>undefined</code> vs <code>null</code> should be checked deliberately.',
+            "<strong>Real-life parallel:</strong> copying a primitive is like photocopying a boarding pass — each copy stands alone.",
         },
         {
-          title: 'Objects & Arrays',
-          eyebrow: 'Slide 6',
-          layout: 'equal',
+          title: "Objects & Arrays",
+          eyebrow: "Slide 6",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'Objects group related information.',
-              'Arrays store ordered collections.',
+              "Objects group related information.",
+              "Arrays store ordered collections.",
               'Both are <span class="highlight">reference types</span>.',
-              'Mutating a shared object or array can create hidden side effects.',
+              "Mutating a shared object or array can create hidden side effects.",
             ],
           },
-          codeFile: 'js/obj_arr.js',
+          codeFile: "js/obj_arr.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> a shared object reference is like a shared Google Doc — if one person edits it, everyone sees the change. An array is like a waiting list or sprint backlog.',
-          footerNote:
-            'QE angle: shared state bugs between tests are hard to track, so clean setup and teardown matter.',
+            "<strong>Real-life parallel:</strong> a shared object reference is like a shared Google Doc — if one person edits it, everyone sees the change. An array is like a waiting list or sprint backlog.",
         },
         {
-          title: 'Truthy and Falsy Values',
-          eyebrow: 'Slide 7',
-          layout: 'equal',
+          title: "Truthy Values",
+          eyebrow: "Slide 7",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'Falsy values: <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, and <code>NaN</code>.',
-              'Everything else is truthy.',
-              'This is useful for guards and conditional logic, but it can hide bugs.',
+              'In a boolean context, values that evaluate to <code>true</code> are <span class="highlight">truthy</span>.',
+              "Examples include non-empty strings, non-zero numbers, objects, arrays, and <code>true</code>.",
+              "Empty arrays <code>[]</code> and empty objects <code>{}</code> are truthy (they exist as references).",
             ],
           },
-          rightCards: [
-            [
-              'Be careful',
-              '<code>if (items.length)</code> is fine — but <code>if (price)</code> fails when the valid value is <code>0</code>.',
-            ],
-            [
-              'Exists vs valid',
-              '<code>""</code> exists as a value, but it is still falsy.',
-            ],
-            [
-              'Testing tip',
-              'Write assertions for the exact state you mean, not just “truthy”.',
-            ],
-          ],
-          codeFile: 'js/truthy_falsy.js',
-          quickViewInLeftPanel: true,
+          codeFile: "js/truthy.js",
           callout:
-            '<strong>Real-life parallel:</strong> badge scanner logic — some badges are clearly invalid, while others are valid even if they look unusual.',
-          footerNote:
-            'QE angle: a value that “exists” is not always a value that is “valid”.',
+            "<strong>Real-life parallel:</strong> badge scanner logic — some badges are clearly invalid, while others are valid even if they look unusual.",
         },
         {
-          title: 'Functions, Arrow Functions & Return',
-          eyebrow: 'Slide 8',
-          layout: 'equal',
+          title: "Falsy Values",
+          eyebrow: "Slide 8",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'Functions package reusable behavior.',
-              'Inputs go in, and output may come out.',
-              '<code>return</code> gives something back.',
-              'Arrow functions are shorter and common in callbacks.',
+              'Falsy values: <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, and <code>NaN</code>.',
+              "Everything not in that list is truthy.",
+              'A value can exist (e.g. <code>""</code>) but still be falsy — write conditions for the exact state you mean.',
+            ],
+          },
+          codeFile: "js/falsy.js",
+          callout:
+            "<strong>Real-life parallel:</strong> an empty form field “exists” but may still be invalid for your rule.",
+        },
+        {
+          title: "Functions, Arrow Functions & Return",
+          eyebrow: "Slide 9",
+          layout: "equal",
+          leftSection: {
+            title: "Core points",
+            bullets: [
+              "Functions package reusable behavior.",
+              "Inputs go in, and output may come out.",
+              "<code>return</code> gives something back.",
+              "Arrow functions are shorter and common in callbacks.",
             ],
           },
           codeFile: `js/functions.js`,
           callout:
-            '<strong>Real-life parallel:</strong> a function with return is like a coffee machine: input goes in, drink comes out.',
-          footerNote:
-            'QE angle: helper functions become easier to reuse across test files and assertions stay readable.',
+            "<strong>Real-life parallel:</strong> a function with return is like a coffee machine: input goes in, drink comes out.",
         },
         {
-          title: 'Conditionals & Loops',
-          eyebrow: 'Slide 9',
-          layout: 'equal',
+          title: "Conditionals & Loops",
+          eyebrow: "Slide 10",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              '<code>if / else</code> handles branching logic.',
-              '<code>switch</code> works well for multiple known cases.',
-              'Loops handle repetition.',
+              "<code>if / else</code> handles branching logic.",
+              "<code>switch</code> works well for multiple known cases.",
+              "Loops handle repetition.",
               '<code>while</code>: the condition is checked <span class="highlight">before</span> each iteration — if it is false at the start, the loop body never runs.',
               '<code>do...while</code>: the body runs <span class="highlight">once</span> first, then the condition is checked <span class="highlight">after</span> each iteration — so the body always executes at least once.',
-              '<code>break</code> stops a process early.',
-              '<code>continue</code> skips the current iteration and moves to the next one.',
+              "<code>break</code> stops a process early.",
+              "<code>continue</code> skips the current iteration and moves to the next one.",
             ],
           },
           codeFile: `js/loops.js`,
           callout:
-            '<strong>Real-life parallel:</strong> airport security decision paths, route selection by ticket type, and checking every item on a checklist.',
-          footerNote:
-            'QE angle: great for validations, retries, and data-driven tests — but unclear control flow leads to unclear failures.',
+            "<strong>Real-life parallel:</strong> airport security decision paths, route selection by ticket type, and checking every item on a checklist.",
         },
         {
-          title: 'Array Built-in Methods: Transform & Iterate',
-          eyebrow: 'Slide 10',
-          layout: 'equal',
+          title: "Array Built-in Methods: Transform & Iterate",
+          eyebrow: "Slide 11",
+          layout: "equal",
           leftSection: {
-            title: 'Core methods',
+            title: "Core methods",
             bullets: [
               '<code>map</code> → <strong>convert prices</strong> (e.g. cents to dollars): one display value per line — same length, <span class="highlight">new array</span>.',
               '<code>filter</code> → <strong>subset of prices</strong> (e.g. only items over $10 or only “on sale”): <span class="highlight">new array</span>, only matches.',
@@ -1093,481 +1113,570 @@
               '<code>forEach</code> → <strong>act on each price</strong> (receipt line, tax label, notify per line): returns <span class="highlight">undefined</span> — side effects only.',
             ],
           },
-          codeFile: 'js/array_transform.js',
+          codeFile: "js/array_transform.js",
           executedCode: false,
           callout:
             '<strong>Real-life parallel (one price list):</strong> <span class="highlight">map</span> = convert each price, <span class="highlight">filter</span> = keep prices that match a rule, <span class="highlight">reduce</span> = add up every price, <span class="highlight">forEach</span> = do something for each line (e.g. print a receipt line).',
-          footerNote:
-            'QE angle: cleaner data transforms, simpler assertions, and easier reporting.',
         },
         {
-          title: 'Array Built-in Methods: Search & Validate',
-          eyebrow: 'Slide 11',
-          layout: 'equal',
+          title: "Array Built-in Methods: Search & Validate",
+          eyebrow: "Slide 12",
+          layout: "equal",
           leftSection: {
-            title: 'Core methods',
+            title: "Core methods",
             bullets: [
-              '<code>find</code>: first matching item.',
-              '<code>findIndex</code>: position of the first match.',
-              '<code>some</code>: at least one item matches.',
-              '<code>every</code>: all items match.',
+              "<code>find</code>: first matching item.",
+              "<code>findIndex</code>: position of the first match.",
+              "<code>some</code>: at least one item matches.",
+              "<code>every</code>: all items match.",
             ],
           },
-          codeFile: 'js/array_search.js',
+          codeFile: "js/array_search.js",
           executedCode: false,
           callout:
             '<strong>Real-life parallel:</strong> <span class="highlight">find</span> — first available seat; <span class="highlight">findIndex</span> — which row it is in; <span class="highlight">some</span> — whether at least one person checked in; <span class="highlight">every</span> — whether everyone completed the mandatory fields.',
-          footerNote:
-            'QE angle: these methods make collection assertions much clearer in UI and API tests.',
         },
         {
-          title: 'Import / Export',
-          eyebrow: 'Slide 12',
-          layout: 'equal',
+          title: "Import / Export",
+          eyebrow: "Slide 13",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              '<code>export</code> makes something available outside a file.',
-              '<code>import</code> lets another file use it.',
-              'Modules help organize code into reusable pieces.',
+              "<code>export</code> makes something available outside a file.",
+              "<code>import</code> lets another file use it.",
+              "Modules help organize code into reusable pieces.",
             ],
           },
           codeFile: `js/modules/index.js`,
           runAsESModule: true,
           callout:
             '<strong>Real-life parallel:</strong> <span class="highlight">export</span> = putting a tool in a shared toolbox. <span class="highlight">import</span> = borrowing that tool in another room.',
-          footerNote:
-            'QE angle: reusable helpers, shared page objects, shared API clients, cleaner architecture.',
         },
         {
-          title: 'Built-in API: Part 1',
-          eyebrow: 'Slide 13',
-          layout: 'equal',
+          title: "Built-in API: Part 1",
+          eyebrow: "Slide 14",
+          layout: "equal",
           leftSection: {
-            title: 'Built-in helpers you use all the time',
+            title: "Built-in helpers you use all the time",
             bullets: [
-              '<code>Math</code>: rounding and basic math.',
-              '<code>Date</code>: times and timestamps.',
+              "<code>Math</code>: rounding and basic math.",
+              "<code>Date</code>: times and timestamps.",
               '<code>RegExp</code>: check if text matches a pattern. Try it on <a href="https://regex101.com/" target="_blank" rel="noopener noreferrer">regex101.com</a>.',
-              '<code>String</code>: <code>split</code> breaks on a character; <code>[1]</code> is what comes after the first break.',
+              "<code>String</code>: <code>split</code> breaks on a character; <code>[1]</code> is what comes after the first break.",
             ],
           },
-          codeFile: 'js/builtin_api_part1.js',
+          codeFile: "js/builtin_api_part1.js",
           executedCode: false,
           callout:
-            '<strong>QE:</strong> use these helpers before writing your own parsers.',
+            "<strong>Tip:</strong> prefer these built-in helpers before writing custom parsers.",
         },
         {
-          title: 'Built-in API: Part 2',
-          eyebrow: 'Slide 14',
-          layout: 'equal',
+          title: "Built-in API: Part 2",
+          eyebrow: "Slide 15",
+          layout: "equal",
           leftSection: {
-            title: 'Object and number helpers',
+            title: "Object and number helpers",
             bullets: [
-              'Convert and format numbers with <code>Number()</code>, <code>parseInt()</code>, <code>parseFloat()</code>, and <code>toFixed()</code>.',
-              'Inspect object shapes with <code>Object.keys()</code>, <code>Object.values()</code>, and <code>Object.entries()</code>.',
+              "Convert and format numbers with <code>Number()</code>, <code>parseInt()</code>, <code>parseFloat()</code>, and <code>toFixed()</code>.",
+              "Inspect object shapes with <code>Object.keys()</code>, <code>Object.values()</code>, and <code>Object.entries()</code>.",
             ],
           },
-          codeFile: 'js/builtin_api_part2.js',
+          codeFile: "js/builtin_api_part2.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> keys = drawer labels, values = what is inside each drawer, entries = label and content together.',
-          footerNote:
-            'QE angle: useful when parsing backend values, checking response shapes, and building flexible validations.',
+            "<strong>Real-life parallel:</strong> keys = drawer labels, values = what is inside each drawer, entries = label and content together.",
         },
         {
-          title: 'Throw, Try/Catch, Finally',
-          eyebrow: 'Slide 15',
-          layout: 'equal',
+          title: "Throw, Try/Catch, Finally",
+          eyebrow: "Slide 16",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              '<code>throw</code>: create an error intentionally.',
-              '<code>try</code>: attempt risky logic.',
-              '<code>catch</code>: handle failures gracefully.',
-              '<code>finally</code>: always run cleanup.',
+              "<code>throw</code>: create an error intentionally.",
+              "<code>try</code>: attempt risky logic.",
+              "<code>catch</code>: handle failures gracefully.",
+              "<code>finally</code>: always run cleanup.",
             ],
           },
-          codeFile: 'js/asyncronous_slide15.js',
+          codeFile: "js/asyncronous_slide15.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> cooking flow — start the recipe, handle something going wrong, then clean the kitchen no matter what.',
-          footerNote:
-            'QE angle: reliable cleanup is a big deal in unstable or slow environments.',
+            "<strong>Real-life parallel:</strong> cooking flow — start the recipe, handle something going wrong, then clean the kitchen no matter what.",
         },
         {
-          title: 'Promises',
-          eyebrow: 'Slide 16',
-          layout: 'equal',
+          title: "Promises",
+          eyebrow: "Slide 17",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'A Promise represents work that finishes later.',
+              "A Promise represents work that finishes later.",
               'It can be <span class="good">fulfilled</span>, <span class="danger">rejected</span>, and still run cleanup in <code>finally</code>.',
-              '<code>then</code>, <code>catch</code>, and <code>finally</code> describe those paths.',
+              "<code>then</code>, <code>catch</code>, and <code>finally</code> describe those paths.",
             ],
           },
-          codeFile: 'js/asyncronous_slide16.js',
+          codeFile: "js/asyncronous_slide16.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> like placing a food delivery order now and getting the result later — delivered, failed, or cleaned up when loading stops.',
-          footerNote:
-            'QE angle: lots of browser and API work is promise-based, so tests can finish too early if promises are not handled correctly.',
+            "<strong>Real-life parallel:</strong> like placing a food delivery order now and getting the result later — delivered, failed, or cleaned up when loading stops.",
         },
         {
-          title: 'Async / Await',
-          eyebrow: 'Slide 17',
-          layout: 'equal',
+          title: "Async / Await",
+          eyebrow: "Slide 18",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'A cleaner way to write promise-based logic.',
-              'Reads step by step.',
-              'Often easier to follow than long chains.',
+              "A cleaner way to write promise-based logic.",
+              "Reads step by step.",
+              "Often easier to follow than long chains.",
             ],
           },
-          codeFile: 'js/asyncronous.js',
+          codeFile: "js/asyncronous.js",
           executedCode: false,
           callout:
-            '<strong>Real-life parallel:</strong> promise chaining feels like following several email threads, while async/await feels like one clear conversation step by step.',
-          footerNote:
-            'QE angle: better readability in setup and teardown, with fewer mistakes in nested async flows.',
+            "<strong>Real-life parallel:</strong> promise chaining feels like following several email threads, while async/await feels like one clear conversation step by step.",
         },
         {
-          title: 'HTTP Requests',
-          eyebrow: 'Slide 18',
-          layout: 'equal',
+          title: "HTTP Requests",
+          eyebrow: "Slide 19",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'A client sends a request and a server responds.',
-              '<code>GET</code> = retrieve, <code>POST</code> = create, <code>PUT</code> = update, <code>OPTIONS</code> = ask what is allowed.',
-              'Common tools: <code>fetch</code> and <code>axios</code>.',
-              'Good tests validate both status and data shape.',
+              "A client sends a request and a server responds.",
+              "<code>GET</code> = retrieve, <code>POST</code> = create, <code>PUT</code> = update, <code>OPTIONS</code> = ask what is allowed.",
+              "Common tools: <code>fetch</code> and <code>axios</code>.",
+              "Validate both status and response shape.",
             ],
           },
           table: [
-            ['Method', 'Typical use'],
-            ['GET', 'Ask for information'],
-            ['POST', 'Submit a new form or create a resource'],
-            ['PUT', 'Replace/update an existing record'],
-            ['OPTIONS', 'Ask what actions are supported'],
+            ["Method", "Typical use"],
+            ["GET", "Ask for information"],
+            ["POST", "Submit a new form or create a resource"],
+            ["PUT", "Replace/update an existing record"],
+            ["OPTIONS", "Ask what actions are supported"],
           ],
           callout:
-            '<strong>Real-life parallel:</strong> at the border — <code>GET</code> is the officer <em>looking at</em> your passport and handing it back unchanged. <code>POST</code> is handing in a <em>new</em> application that creates a file. <code>PUT</code> is replacing the <em>whole</em> visa page on file with a new one. <code>OPTIONS</code> is asking the desk what you are allowed to do before you join the line.',
+            "<strong>Real-life parallel:</strong> at the border — <code>GET</code> is the officer <em>looking at</em> your passport and handing it back unchanged. <code>POST</code> is handing in a <em>new</em> application that creates a file. <code>PUT</code> is replacing the <em>whole</em> visa page on file with a new one. <code>OPTIONS</code> is asking the desk what you are allowed to do before you join the line.",
         },
         {
-          title: 'Event Loop',
-          eyebrow: 'Slide 19',
-          layout: 'equal',
+          title: "Event Loop",
+          eyebrow: "Slide 20",
+          layout: "equal",
           leftSection: {
-            title: 'What is happening?',
+            title: "What is happening?",
             bullets: [
               'JavaScript runs one thing at a time on the <span class="highlight">call stack</span>.',
               'When the stack clears, <span class="highlight">microtasks</span> run first.',
               'Then the <span class="highlight">macrotask</span> queue runs — <code>setTimeout</code> and similar APIs schedule work here (each callback is a macrotask).',
-              'That is why <code>Promise</code> callbacks run before <code>setTimeout</code>, even with <code>0</code> ms delay.',
+              "That is why <code>Promise</code> callbacks run before <code>setTimeout</code>, even with <code>0</code> ms delay.",
             ],
           },
-          codeFile: 'js/event_loop.js',
+          diagram: {
+            src: "assets/event-loop-diagram.png",
+            alt: "JavaScript event loop: call stack, Web APIs, callback queue, and flow between them.",
+          },
+          codeFile: "js/event_loop.js",
           executedCode: false,
           callout:
             '<strong>Real-life parallel:</strong> airport check-in — one agent serves one passenger at a time (like a single thread). Who is at the desk right now is the <span class="highlight">call stack</span>. Urgent follow-ups at the side are <span class="highlight">microtasks</span>. Everyone waiting in the regular line is the <span class="highlight">macrotask</span> queue.',
-          footerNote:
-            'QE angle: missing <code>await</code> can make tests finish early, and timing confusion creates flaky tests.',
         },
         {
-          title: 'Issues with Using JS',
-          eyebrow: 'Slide 20',
-          layout: 'equal',
+          title: "Issues with Using JS",
+          eyebrow: "Slide 21",
+          layout: "equal",
           leftSection: {
-            title: 'Where the friction shows up',
+            title: "Where the friction shows up",
             bullets: [
-              'Dynamic typing',
-              'Implicit type coercion',
-              'Async complexity',
-              'Mutability',
+              "Dynamic typing",
+              "Implicit type coercion",
+              "Async complexity",
+              "Mutability",
             ],
           },
           rightCards: [
             [
-              'Fast but loose',
-              'JavaScript alone can feel like driving a fast car with fewer lane markings.',
+              "Fast but loose",
+              "JavaScript alone can feel like driving a fast car with fewer lane markings.",
             ],
             [
-              'TypeScript effect',
-              'TypeScript adds signs, lanes, and guardrails without changing the engine.',
+              "TypeScript effect",
+              "TypeScript adds signs, lanes, and guardrails without changing the engine.",
             ],
             [
-              'QE impact',
-              'Runtime failures, flaky tests, harder refactoring, and less predictable behavior.',
+              "Practical impact",
+              "Runtime surprises, harder refactoring, and less predictable behavior when structure is missing.",
             ],
           ],
           callout:
-            '<strong>Main idea:</strong> JavaScript is powerful and flexible — but that flexibility can become risk if test code grows without structure.',
+            "<strong>Main idea:</strong> JavaScript is powerful and flexible — but that flexibility can become risk if code grows without structure.",
         },
         {
-          title: 'ES6 Modern JS Features You’ll See Everywhere',
-          eyebrow: 'Slide 21',
-          layout: 'equal',
+          title: "ES6 Modern JS Features You’ll See Everywhere",
+          eyebrow: "Slide 22",
+          layout: "equal",
           leftSection: {
-            title: 'What is ES6?',
+            title: "What is ES6?",
             bullets: [
               '<span class="highlight">ES6 (2015)</span> — big syntax refresh; “modern JS” = ES6+.',
-              '<code>const</code> once, <code>let</code> when you reassign; both are block-scoped.',
-              '<strong>Destructuring</strong> — object: <code>{ id, name }</code> · array: <code>[a, b, ...rest]</code> (skip slots with commas).',
-              '<strong>Spread</strong> <code>...</code> copies or merges (e.g. <code>[...arr, x]</code>). <strong>Rest</strong> in params gathers extra args.',
+              "<code>const</code> once, <code>let</code> when you reassign; both are block-scoped.",
+              "<strong>Destructuring</strong> — object: <code>{ id, name }</code> · array: <code>[a, b, ...rest]</code> (skip slots with commas).",
+              "<strong>Spread</strong> <code>...</code> copies or merges (e.g. <code>[...arr, x]</code>). <strong>Rest</strong> in params gathers extra args.",
               '<strong><code>?.</code></strong> safe access if left side is null/undefined. <strong><code>??</code></strong> default only for null/undefined (not <code>0</code> / <code>""</code> like <code>||</code>).',
-              '<code>for...of</code> — iterate values in order.',
+              "<code>for...of</code> — iterate values in order.",
             ],
           },
-          code: `// object + object destructuring\nconst user = { id: 1, name: 'Ana', lead: { name: 'Sam' } };\nconst { id, name } = user;\n\n// optional chaining (?.) + nullish coalescing (??)\nconst lead = user.lead?.name;\nconst backup = user.deputy?.name ?? 'n/a';\n\n// array destructuring + rest; spread into new array\nconst suites = ['smoke', 'api', 'e2e'];\nconst [first, second, ...more] = suites;\nconst plan = [...suites, 'nightly'];\n\n// rest params (...t) + spread in a call\nconst line = (h, ...t) => h + ': ' + t.join(', ');\nconsole.log(line(first, ...more));\nconsole.log({ id, name, lead, backup });\n\n// nested optional chain + ?? default\nconst body = { data: { status: 200 } };\nconsole.log(body?.data?.status ?? '—');\n\n// for...of over iterable\nfor (const s of plan) console.log(s);`,
+          code: `// object + object destructuring\nconst user = { id: 1, name: 'Ana', lead: { name: 'Sam' } };\nconst { id, name } = user;\n\n// optional chaining (?.) + nullish coalescing (??)\nconst lead = user.lead?.name;\nconst backup = user.deputy?.name ?? 'n/a';\n\n// array destructuring + rest; spread into new array\nconst phases = ['draft', 'review', 'ship'];\nconst [first, second, ...more] = phases;\nconst plan = [...phases, 'archive'];\n\n// rest params (...t) + spread in a call\nconst line = (h, ...t) => h + ': ' + t.join(', ');\nconsole.log(line(first, ...more));\nconsole.log({ id, name, lead, backup });\n\n// nested optional chain + ?? default\nconst body = { data: { status: 200 } };\nconsole.log(body?.data?.status ?? '—');\n\n// for...of over iterable\nfor (const s of plan) console.log(s);`,
         },
         {
-          title: 'API Call Example in a Test Environment',
-          eyebrow: 'Slide 22',
-          layout: 'equal',
+          title: "API Call Example: Mock vs Real Backend",
+          eyebrow: "Slide 23",
+          layout: "equal",
           leftSection: {
-            title: 'What are we validating?',
+            title: "What to check",
             bullets: [
-              'The right endpoint was called.',
-              'The request body or params are correct.',
-              'The UI reacts correctly to success and failure.',
-              'The response shape matches expectations.',
+              "The right endpoint was called.",
+              "The request body or params are correct.",
+              "Success and failure paths behave as expected.",
+              "The response shape matches expectations.",
             ],
           },
           table: [
-            ['Use a mock/stub when…', 'Use a real backend when…'],
+            ["Use a mock/stub when…", "Use a real backend when…"],
             [
-              'You need speed and repeatability.',
-              'You need realistic end-to-end confidence.',
+              "You need speed and repeatability.",
+              "You need realistic end-to-end confidence.",
             ],
             [
-              'You want to simulate errors or rare edge cases.',
-              'You need to validate contracts, auth, and integration behavior.',
+              "You want to simulate errors or rare edge cases.",
+              "You need to validate contracts, auth, and integration behavior.",
             ],
             [
-              'Data setup is expensive or unstable.',
-              'You want to catch environment/configuration issues.',
+              "Data setup is expensive or unstable.",
+              "You want to catch environment/configuration issues.",
             ],
           ],
-          code: 'https://api-22.postman.co/workspace/Sportsbook-Services~4bd98ad6-ed5c-44ab-91cf-e1427e326fca/request/24448960-0305d547-4b03-43a2-8fa8-453e8ea7c044?action=share&creator=37556128&active-environment=24448960-b70d5e3b-c3bc-4c77-8c61-1cb972a26697',
+          code: "https://api-22.postman.co/workspace/Sportsbook-Services~4bd98ad6-ed5c-44ab-91cf-e1427e326fca/request/24448960-0305d547-4b03-43a2-8fa8-453e8ea7c044?action=share&creator=37556128&active-environment=24448960-b70d5e3b-c3bc-4c77-8c61-1cb972a26697",
           callout:
-            '<strong>Real-life parallel:</strong> simulator vs real flight. A simulator is controlled and repeatable; a real flight is realistic but noisier.',
-          footerNote:
-            'QE angle: the best strategy is usually a mix — fast mocked tests for coverage, plus a smaller set of real-backend tests for confidence.',
+            "<strong>Real-life parallel:</strong> simulator vs real flight. A simulator is controlled and repeatable; a real flight is realistic but noisier.",
         },
         {
-          title: 'TypeScript: Basic Explanation',
-          eyebrow: 'Slide 23',
-          layout: 'equal',
+          title: "TypeScript: Basic Explanation",
+          eyebrow: "Slide 24",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
               'TypeScript is JavaScript plus <span class="highlight">static type checking</span>.',
-              'It compiles to JavaScript.',
-              'It helps catch problems earlier — before runtime.',
-              'Use <strong>Run Code</strong> on each: compare the outputs — JS allows the risky <code>total(3, "4")</code> call; with TypeScript that call never ships because it fails at compile time.',
+              "It compiles to JavaScript.",
+              "It helps catch problems earlier — before runtime.",
+              'Use <strong>Run Code</strong> on each: compare the outputs — JS allows the risky <code>total(3, "4")</code> call; TypeScript catches that mismatch at compile time.',
             ],
           },
           callout:
-            '<strong>Real-life parallel:</strong> JavaScript is like filling out a paper form with no boxes — anything goes until someone reads it wrong. TypeScript is like a form with labeled fields — the “compiler” checks that names, dates, and numbers go in the right place before anything ships.',
+            "<strong>Real-life parallel:</strong> JavaScript is like filling out a paper form with no boxes — anything goes until someone reads it wrong. TypeScript is like a form with labeled fields — the “compiler” checks that names, dates, and numbers go in the right place before anything ships.",
           codeExamples: [
             {
-              title: 'JavaScript',
-              file: 'js/slide23_compare_js.js',
+              title: "JavaScript",
+              file: "js/slide23_compare_js.js",
               executedCode: false,
             },
             {
-              title: 'TypeScript',
-              file: 'ts/slide23_compare_ts.ts',
+              title: "TypeScript",
+              file: "ts/slide23_compare_ts.ts",
               executedCode: false,
             },
           ],
         },
         {
-          title: 'TypeScript: Basic Types',
-          eyebrow: 'Slide 24',
-          layout: 'equal',
+          title: "TypeScript: Basic Types",
+          eyebrow: "Slide 25",
+          layout: "equal",
           leftSection: {
-            title: 'Common types',
+            title: "Common types",
             bullets: [
-              '<code>string</code>',
-              '<code>number</code>',
-              '<code>boolean</code>',
-              '<code>array</code>',
-              '<code>object</code>',
-              '<code>null</code>',
-              '<code>undefined</code>',
-              '<code>void</code>',
+              "<code>string</code>",
+              "<code>number</code>",
+              "<code>boolean</code>",
+              "<code>array</code>",
+              "<code>object</code>",
+              "<code>null</code>",
+              "<code>undefined</code>",
+              "<code>void</code>",
             ],
           },
           callout:
-            '<strong>Warning:</strong> typing can bring issues too. Add explicit types when you’re <strong>not sure of the type</strong>, or when it’s <strong>complex or a custom type</strong> — not everywhere.',
-          calloutClass: 'callout-warn',
-          code: `let testName: string = 'checkout';\nlet duration: number = 1200;\nlet passed: boolean = true;\nlet tags: string[] = ['smoke', 'api'];\nlet payload: object = { ok: true };\nlet nothing: null = null;\nlet missing: undefined = undefined;\n\nfunction logMessage(msg: string): void {\n  console.log(msg);\n}`,
+            "<strong>Warning:</strong> typing can bring issues too. Add explicit types when you’re <strong>not sure of the type</strong>, or when it’s <strong>complex or a custom type</strong> — not everywhere.",
+          calloutClass: "callout-warn",
+          code: `let title: string = 'checkout';\nlet duration: number = 1200;\nlet done: boolean = true;\nlet tags: string[] = ['urgent', 'internal'];\nlet payload: object = { ok: true };\nlet nothing: null = null;\nlet missing: undefined = undefined;\n\nfunction logMessage(msg: string): void {\n  console.log(msg);\n}`,
         },
         {
-          title: 'TypeScript: Custom Types',
-          eyebrow: 'Slide 25',
-          layout: 'equal',
+          title: "TypeScript: Custom Types",
+          eyebrow: "Slide 26",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'A custom <code>type</code> is a reusable contract for the same shape (users, API payloads, configs).',
-              '<strong>Without a <code>User</code> type</strong> (plain object / <code>any</code>): nothing checks property names — a typo like <code>user.nmae</code> is still valid code, bad shapes slip through, and you usually only notice when something <strong>breaks at runtime</strong> (flaky tests or production).',
-              '<strong>With a <code>User</code> type:</strong> invalid fields are flagged before you run, the model is self-documenting, and <code>active?</code> encodes “may be absent” (e.g. partial API responses). <strong>Trade-off:</strong> when the API changes, you update the type to match.',
+              "A custom <code>type</code> is a reusable contract for the same shape (users, API payloads, configs).",
+              "<strong>Without a <code>User</code> type</strong> (plain object / <code>any</code>): nothing checks property names — a typo like <code>user.nmae</code> is still valid code, bad shapes slip through, and you usually only notice when something <strong>breaks at runtime</strong>.",
+              "<strong>With a <code>User</code> type:</strong> invalid fields are flagged before you run, the model is self-documenting, and <code>active?</code> encodes “may be absent” (e.g. partial API responses). <strong>Trade-off:</strong> when the API changes, you update the type to match.",
             ],
           },
           code: `type User = {\n  id: number;\n  name: string;\n  active?: boolean; // optional — not every payload includes it\n};\n\ntype ApiResponse = {\n  status: number;\n  data: User[];\n};\n\n// OK: active omitted\nconst u: User = { id: 1, name: 'Ana' };\n// const bad: User = { id: 1 }; // Error: name is required`,
           callout:
-            '<strong>Real-life parallel:</strong> a custom type is like a template form everyone must follow.',
+            "<strong>Real-life parallel:</strong> a custom type is like a template form everyone must follow.",
         },
         {
-          title: 'TypeScript: any vs unknown',
-          eyebrow: 'Slide 26',
-          layout: 'equal',
+          title: "TypeScript: any vs unknown",
+          eyebrow: "Slide 27",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              '<code>any</code> turns off checking.',
-              '<code>unknown</code> forces inspection before use.',
-              'Prefer <code>unknown</code> for external data you do not trust yet.',
+              "<code>any</code> turns off checking.",
+              "<code>unknown</code> forces inspection before use.",
+              "Prefer <code>unknown</code> for external data you do not trust yet.",
             ],
           },
           code: `let rawAny: any = JSON.parse(body);\nrawAny.user.name.toUpperCase(); // no TypeScript warning\n\nlet rawUnknown: unknown = JSON.parse(body);\n\nif (typeof rawUnknown === 'object' && rawUnknown !== null) {\n  console.log('Now we can inspect it safely');\n}`,
           callout:
-            '<strong>Real-life parallel:</strong> <code>any</code> is letting someone through security with no checks. <code>unknown</code> is asking for ID before entry.',
-          footerNote:
-            'QE angle: safer handling of API responses and parsed data.',
+            "<strong>Real-life parallel:</strong> <code>any</code> is letting someone through security with no checks. <code>unknown</code> is asking for ID before entry.",
         },
         {
-          title: 'TypeScript: Union & Intersection Types',
-          eyebrow: 'Slide 27',
-          layout: 'equal',
+          title: "TypeScript: Union & Intersection Types",
+          eyebrow: "Slide 28",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'A <span class="highlight">union</span> means one of several allowed types or shapes.',
-              'An <span class="highlight">intersection</span> combines multiple requirements.',
+              "A <span class=\"highlight\">union</span> (<code>|</code>) means “one of these” — e.g. <code>Ticket</code> is either <code>'paper'</code> or <code>'digital'</code>.",
+              'An <span class="highlight">intersection</span> (<code>&</code>) merges types: the value must satisfy <strong>all</strong> of them at the same time.',
+              "For objects, <code>Passenger &amp; CheckedIn</code> is one object type that includes <strong>every</strong> property from both — not two separate values.",
+              "<code>ReadyToBoard</code> is the same as writing <code>{ name: string; checkedIn: true }</code>: you must have a name <em>and</em> <code>checkedIn: true</code> (not optional).",
             ],
           },
-          code: `type Ticket = 'paper' | 'digital'; // union\n\ntype Passenger = { name: string };\ntype CheckedIn = { checkedIn: true };\n\ntype ReadyToBoard = Passenger & CheckedIn; // intersection`,
+          code: `// Union — one literal or the other
+type Ticket = 'paper' | 'digital';
+
+type Passenger = { name: string };
+type CheckedIn = { checkedIn: true }; // literal true, not just boolean
+
+// Intersection — one object that satisfies both shapes (fields merged)
+type ReadyToBoard = Passenger & CheckedIn;
+// Equivalent to: { name: string; checkedIn: true }
+
+const allowed: ReadyToBoard = { name: 'Ana', checkedIn: true };
+
+const missing: ReadyToBoard = { name: 'Ana' };
+// Error: checkedIn required
+
+const wrong: ReadyToBoard = { name: 'Ana', checkedIn: false }; 
+// Error: must be true`,
           callout:
-            '<strong>Real-life parallel:</strong> union = ticket can be paper or digital. Intersection = must be a passenger and checked in.',
+            "<strong>Real-life parallel:</strong> union = boarding pass can be paper or mobile. Intersection = ready to board means you are a passenger <em>and</em> checked in — both labels apply to the <strong>same</strong> person.",
         },
         {
-          title: 'TypeScript: Interface vs Type',
-          eyebrow: 'Slide 28',
-          layout: 'equal',
+          title: "TypeScript: Interface vs Type",
+          eyebrow: "Slide 29",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'Both define shapes.',
-              'Interfaces are often clearer for object contracts.',
-              'Types are more flexible for unions and combinations.',
+              "Both define shapes for objects and values.",
+              "<code>interface</code> can use <code>extends</code> to inherit fields from another interface and add new ones.",
+              "<code>type</code> is flexible for unions (<code>|</code>), intersections (<code>&</code>), and aliases — you compose with operators, not <code>extends</code>.",
+              "Pick <code>interface</code> for clear object contracts; pick <code>type</code> when unions or intersections are central.",
             ],
           },
+          code: `// Interface — extends adds fields on top of the base shape
+interface Animal {
+  name: string;
+}
+
+interface Dog extends Animal {
+  numberOfLegs: number;
+}
+
+const dog: Dog = { name: 'Ace', numberOfLegs: 4 };
+
+// Type — compose with & and | (no extends keyword)
+type Bird = Animal & { wingspanCm: number };
+
+// Union: value is a Dog OR a Bird
+type Pet = Dog | Bird;`,
           table: [
-            ['Good fit', 'Example'],
-            ['interface', 'API models, page objects, config objects'],
-            ['type', 'unions, intersections, aliases, utility-heavy patterns'],
+            ["Good fit", "Example"],
+            ["interface", "API models, domain objects, config objects"],
+            ["type", "unions, intersections, aliases, utility-heavy patterns"],
           ],
           callout:
-            '<strong>Practical rule:</strong> use either consistently, but reach for <code>type</code> when you need composition and <code>interface</code> when you want a straightforward object contract.',
+            "<strong>Practical rule:</strong> use either consistently, but reach for <code>type</code> when composition is mostly <code>|</code> / <code>&</code>, and <code>interface</code> when you want a readable chain of <code>extends</code>.",
         },
         {
-          title: 'TypeScript: Optional vs Required Fields',
-          eyebrow: 'Slide 29',
-          layout: 'equal',
+          title: "TypeScript: Optional vs Required Fields",
+          eyebrow: "Slide 30",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core points",
             bullets: [
-              'An optional field may be absent.',
-              '<code>string | undefined</code> means the field exists in the type but may hold <code>undefined</code>.',
-              'Optional parameters should come after required ones.',
+              "An optional field may be absent.",
+              "<code>string | undefined</code> means the field exists in the type but may hold <code>undefined</code>.",
+              "Optional parameters should come after required ones.",
             ],
           },
-          code: `type User = {\n  id: number;\n  middleName?: string;\n  nickname: string | undefined;\n};\n\nfunction logUser(id: number, verbose?: boolean) {\n  console.log(id, verbose);\n}`,
-          footerNote:
-            'QE angle: crucial for API contracts and assertions, especially when responses can be incomplete.',
-        },
-        {
-          title: 'TypeScript: Utility Types',
-          eyebrow: 'Slide 30',
-          layout: 'equal',
-          leftSection: {
-            title: 'Core utilities',
-            bullets: [
-              '<code>Partial</code>',
-              '<code>Record</code>',
-              '<code>Pick</code>',
-              '<code>Omit</code>',
-              '<code>Readonly</code>',
-            ],
-          },
-          code: `type User = { id: number; name: string; email: string };\n\ntype DraftUser = Partial<User>;\ntype UserMap = Record<string, User>;\ntype PublicUser = Pick<User, 'id' | 'name'>;\ntype UserWithoutEmail = Omit<User, 'email'>;\ntype LockedUser = Readonly<User>;`,
+          code: `type User = {
+  id: number;
+  middleName?: string; 
+  // optional key — may omit on the object
+  nickname: string | undefined;
+  // key declared - may be undefined but can't be omitted
+};
+
+const u: User = { id: 1, nickname: undefined };
+// omitting middleName is OK
+
+// Required parameters first; optional middleName last
+function logUser(id: number, middleName?: string) {
+  console.log({ id, middleName: middleName ?? '(none)' });
+}
+
+logUser(1);
+logUser(1, 'Ace');`,
           callout:
-            '<strong>Real-life parallel:</strong> Pick = select only needed check-in fields. Omit = remove confidential fields. Readonly = locked official document. Partial = incomplete draft form. Record = lookup table.',
+            "<strong>Remember:</strong> <code>middleName?</code> means the property can be missing on the object. <code>nickname: string | undefined</code> means the property is part of <code>User</code>, but you may assign <code>undefined</code> to it.",
         },
         {
-          title: 'TypeScript: Enum',
-          eyebrow: 'Slide 31',
-          layout: 'equal',
+          title: "TypeScript: Utility Types",
+          eyebrow: "Slide 31",
+          layout: "equal",
           leftSection: {
-            title: 'Core points',
+            title: "Core utilities",
             bullets: [
-              'Enums group known values.',
-              '<code>as const</code> objects are a modern alternative.',
-              'This is helpful when values come from a fixed domain.',
+              "<code>Partial</code>",
+              "<code>Record</code>",
+              "<code>Pick</code>",
+              "<code>Omit</code>",
+              "<code>Readonly</code>",
             ],
           },
-          code: `enum Status {\n  Pending = 'pending',\n  Passed = 'passed',\n  Failed = 'failed'\n}\n\nconst Statuses = {\n  Pending: 'pending',\n  Passed: 'passed',\n  Failed: 'failed'\n} as const;`,
-          footerNote:
-            'QE angle: useful for status values, environments, permissions, and other fixed vocabularies.',
-        },
-        {
-          title: 'TypeScript: Type Inference & Type Casting',
-          eyebrow: 'Slide 32',
-          layout: 'equal',
-          leftSection: {
-            title: 'Core points',
-            bullets: [
-              'TypeScript can infer many types automatically.',
-              'Casting should be used carefully.',
-              'Prefer validation and narrowing over unsafe casting.',
-            ],
-          },
-          code: `const retries = 3; // inferred as number\n\nconst el = document.querySelector('#submit');\nconst button = el as HTMLButtonElement; // cast\n\nif (button) {\n  button.disabled = true;\n}`,
+          code: `type User = { id: number; name: string; email: string };
+
+// Partial<User>  →  { id?: number; name?: string; email?: string }
+type DraftUser = Partial<User>;
+
+// Record<string, User>  →  { [key: string]: User }
+type UserMap = Record<string, User>;
+
+// Pick<User, 'id' | 'name'>  →  { id: number; name: string }
+type PublicUser = Pick<User, 'id' | 'name'>;
+
+// Omit<User, 'email'>  →  { id: number; name: string }
+type UserWithoutEmail = Omit<User, 'email'>;
+
+// Readonly<User>  →  { readonly id: number; readonly name: string; readonly email: string }
+type LockedUser = Readonly<User>;`,
           callout:
-            '<strong>Real-life parallel:</strong> inference is recognizing a football jersey without asking the role. Casting is assigning a role manually — useful, but risky if wrong.',
+            '<strong>Real-life parallel:</strong> <span class="highlight">Pick</span> = select only needed check-in fields. <span class="highlight">Omit</span> = remove confidential fields. <span class="highlight">Readonly</span> = locked official document. <span class="highlight">Partial</span> = incomplete draft form. <span class="highlight">Record</span> = lookup table.',
+        },
+        {
+          title: "TypeScript: Enum",
+          eyebrow: "Slide 32",
+          layout: "equal",
+          leftSection: {
+            title: "Core points",
+            bullets: [
+              "Enums group known values.",
+              "<code>as const</code> objects are a modern alternative.",
+              "This is helpful when values come from a fixed domain.",
+            ],
+          },
+          code: `// enum — runtime object is emitted; string enums avoid reverse-map weirdness of numeric enums
+enum Status {
+  Pending = 'pending',
+  Passed = 'passed',
+  Failed = 'failed',
+}
+
+// as const — object is frozen for typing; each property keeps its literal type
+const Statuses = {
+  Pending: 'pending',
+  Passed: 'passed',
+  Failed: 'failed',
+} as const;
+
+// typeof Statuses.Pending is 'pending', not string
+type StatusLiteral = (typeof Statuses)[keyof typeof Statuses];
+// → 'pending' | 'passed' | 'failed'`,
+          callout:
+            "<strong>Practical take:</strong> use <code>enum</code> when your team standardizes on it and you accept the emitted JS. Use <code>as const</code> objects when you want the same fixed vocabulary with <strong>no extra enum runtime</strong> and tighter literal inference.",
+        },
+        {
+          title: "TypeScript: Type Inference & Type Casting",
+          eyebrow: "Slide 33",
+          layout: "equal",
+          leftSection: {
+            title: "Core points",
+            bullets: [
+              "<strong>Inference:</strong> TypeScript fills in the type from the value you assign (e.g. <code>const retries = 3</code> → <code>number</code>).",
+              "<strong>Casting (<code>as</code>):</strong> you assert a type when TypeScript does not know it yet — often with <code>unknown</code>, parsed JSON, or API data.",
+              "Casts can be wrong at runtime: prefer checks or schemas when the data is untrusted.",
+            ],
+          },
+          code: `// Inference — TypeScript sets the type from the value
+const retries = 3;
+
+// Cast — value is unknown; you tell TypeScript it is a number
+let value: unknown = 100;
+const total = value as number;
+console.log(total + 1);`,
+          callout:
+            "<strong>Real-life parallel:</strong> inference is reading the price tag on an item. Casting is telling the cashier the SKU when the barcode is blurry — fine if you are sure; double-check when money is on the line.",
           footerNote:
-            'Best practice: narrow with runtime checks when data comes from the outside world.',
+            "Best practice: validate or narrow parsed/API data before trusting a cast.",
+        },
+        {
+          title: "QA & formulation feedback",
+          eyebrow: "Slide 34",
+          layout: "equal",
+          lead: "Before we close — a few prompts to capture what landed and how you want to use it.",
+          leftSection: {
+            title: "Reflect & share",
+            bullets: [
+              "<strong>Formulation:</strong> How will you phrase expectations, edge cases, and assertions in JS/TS after today?",
+              "<strong>QA lens:</strong> Where do types, async, or data shape show up most in your workflows (API, UI, automation)?",
+              "<strong>Feedback:</strong> What should we clarify, shorten, or go deeper on next time?",
+            ],
+          },
+          callout:
+            "<strong>Optional:</strong> jot notes for your team or bring questions to the follow-up channel — no wrong answers, just sharper formulations.",
         },
       ];
 
-      const slidesEl = document.getElementById('slides');
+      const slidesEl = document.getElementById("slides");
 
       function escapeHtml(str) {
         return String(str)
-          .replace(/&/g, '&amp;')
-          .replace(/</g, '&lt;')
-          .replace(/>/g, '&gt;')
-          .replace(/"/g, '&quot;');
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
       }
 
       const JS_TS_KEYWORDS = new Set(
         `abstract any as asserts async await break case catch class const continue debugger declare default delete do else enum export extends false finally for from function get if implements import in infer instanceof interface is keyof let module namespace never new null of override package private protected public readonly return satisfies static super switch this throw true try type typeof undefined unknown using var void while with yield`
           .trim()
-          .split(/\s+/)
+          .split(/\s+/),
       );
 
       const TS_PRIMITIVE_TYPES = new Set([
-        'string',
-        'number',
-        'boolean',
-        'bigint',
-        'symbol',
+        "string",
+        "number",
+        "boolean",
+        "bigint",
+        "symbol",
       ]);
 
       function hlSpan(cls, text) {
@@ -1575,7 +1684,7 @@
       }
 
       function isDigit(c) {
-        return c >= '0' && c <= '9';
+        return c >= "0" && c <= "9";
       }
 
       function isIdStart(c) {
@@ -1589,20 +1698,20 @@
       function scanStringEnd(src, start, quote) {
         const n = src.length;
         let i = start + 1;
-        if (quote === '`') {
+        if (quote === "`") {
           while (i < n) {
             const ch = src[i];
-            if (ch === '\\') {
+            if (ch === "\\") {
               i += 2;
               continue;
             }
-            if (ch === '`') return i + 1;
-            if (ch === '$' && src[i + 1] === '{') {
+            if (ch === "`") return i + 1;
+            if (ch === "$" && src[i + 1] === "{") {
               i += 2;
               let depth = 1;
               while (i < n && depth > 0) {
-                if (src[i] === '{') depth++;
-                else if (src[i] === '}') depth--;
+                if (src[i] === "{") depth++;
+                else if (src[i] === "}") depth--;
                 i++;
               }
               continue;
@@ -1612,7 +1721,7 @@
           return n;
         }
         while (i < n) {
-          if (src[i] === '\\') {
+          if (src[i] === "\\") {
             i += 2;
             continue;
           }
@@ -1625,41 +1734,41 @@
       function scanNumberEnd(src, start) {
         const n = src.length;
         let i = start;
-        if (src[i] === '0' && i + 1 < n) {
+        if (src[i] === "0" && i + 1 < n) {
           const nx = src[i + 1];
-          if (nx === 'x' || nx === 'X') {
+          if (nx === "x" || nx === "X") {
             i += 2;
             while (i < n && /[0-9a-fA-F]/.test(src[i])) i++;
             return i;
           }
-          if (nx === 'b' || nx === 'B') {
+          if (nx === "b" || nx === "B") {
             i += 2;
             while (i < n && /[01]/.test(src[i])) i++;
             return i;
           }
-          if (nx === 'o' || nx === 'O') {
+          if (nx === "o" || nx === "O") {
             i += 2;
             while (i < n && /[0-7]/.test(src[i])) i++;
             return i;
           }
         }
         while (i < n && isDigit(src[i])) i++;
-        if (i < n && src[i] === '.') {
+        if (i < n && src[i] === ".") {
           i++;
           while (i < n && isDigit(src[i])) i++;
         }
-        if (i < n && (src[i] === 'e' || src[i] === 'E')) {
+        if (i < n && (src[i] === "e" || src[i] === "E")) {
           i++;
-          if (i < n && (src[i] === '+' || src[i] === '-')) i++;
+          if (i < n && (src[i] === "+" || src[i] === "-")) i++;
           while (i < n && isDigit(src[i])) i++;
         }
-        if (i < n && src[i] === 'n') i++;
+        if (i < n && src[i] === "n") i++;
         return i;
       }
 
       function highlightJavaScript(src) {
         const n = src.length;
-        let out = '';
+        let out = "";
         let i = 0;
         while (i < n) {
           const c = src[i];
@@ -1671,38 +1780,33 @@
             continue;
           }
 
-          if (rest.startsWith('//')) {
-            const endLine = src.indexOf('\n', i);
-            const chunk =
-              endLine === -1 ? src.slice(i) : src.slice(i, endLine);
-            out += hlSpan('comment', chunk);
+          if (rest.startsWith("//")) {
+            const endLine = src.indexOf("\n", i);
+            const chunk = endLine === -1 ? src.slice(i) : src.slice(i, endLine);
+            out += hlSpan("comment", chunk);
             i += chunk.length;
             continue;
           }
 
-          if (rest.startsWith('/*')) {
-            const end = src.indexOf('*/', i + 2);
-            const chunk =
-              end === -1 ? src.slice(i) : src.slice(i, end + 2);
-            out += hlSpan('comment', chunk);
+          if (rest.startsWith("/*")) {
+            const end = src.indexOf("*/", i + 2);
+            const chunk = end === -1 ? src.slice(i) : src.slice(i, end + 2);
+            out += hlSpan("comment", chunk);
             i += chunk.length;
             continue;
           }
 
-          if (c === '"' || c === "'" || c === '`') {
+          if (c === '"' || c === "'" || c === "`") {
             const end = scanStringEnd(src, i, c);
-            out += hlSpan('string', src.slice(i, end));
+            out += hlSpan("string", src.slice(i, end));
             i = end;
             continue;
           }
 
-          if (
-            isDigit(c) ||
-            (c === '.' && i + 1 < n && isDigit(src[i + 1]))
-          ) {
+          if (isDigit(c) || (c === "." && i + 1 < n && isDigit(src[i + 1]))) {
             const end = scanNumberEnd(src, i);
             if (end > i) {
-              out += hlSpan('number', src.slice(i, end));
+              out += hlSpan("number", src.slice(i, end));
               i = end;
               continue;
             }
@@ -1713,9 +1817,9 @@
             while (j < n && isIdPart(src[j])) j++;
             const word = src.slice(i, j);
             if (JS_TS_KEYWORDS.has(word)) {
-              out += hlSpan('keyword', word);
+              out += hlSpan("keyword", word);
             } else if (TS_PRIMITIVE_TYPES.has(word)) {
-              out += hlSpan('type', word);
+              out += hlSpan("type", word);
             } else {
               out += escapeHtml(word);
             }
@@ -1748,7 +1852,7 @@
           if (!ex || ex.executedCode) return;
           file = ex.file;
           useESModule = Boolean(ex.runAsESModule);
-          codeBlockId = 'code-' + slideIndex + '-' + exampleIndex;
+          codeBlockId = "code-" + slideIndex + "-" + exampleIndex;
           markExecuted = () => {
             ex.executedCode = true;
           };
@@ -1756,7 +1860,7 @@
           if (!slide.codeFile || slide.executedCode) return;
           file = slide.codeFile;
           useESModule = Boolean(slide.runAsESModule);
-          codeBlockId = 'code-' + slideIndex;
+          codeBlockId = "code-" + slideIndex;
           markExecuted = () => {
             slide.executedCode = true;
           };
@@ -1768,12 +1872,12 @@
           code = code
             .replace(
               /\/\/# sourceMappingURL=data:application\/json;base64,[A-Za-z0-9+/=]+\s*/g,
-              ''
+              "",
             )
             .trimEnd();
 
-          if (file.endsWith('.ts') && !useESModule) {
-            const ts = await import('typescript');
+          if (file.endsWith(".ts") && !useESModule) {
+            const ts = await import("typescript");
             const { outputText } = ts.transpileModule(code, {
               compilerOptions: {
                 module: ts.ModuleKind.ESNext,
@@ -1789,9 +1893,11 @@
             logs.push(
               args
                 .map((a) =>
-                  typeof a === 'object' ? JSON.stringify(a, null, 2) : String(a)
+                  typeof a === "object"
+                    ? JSON.stringify(a, null, 2)
+                    : String(a),
                 )
-                .join(' ')
+                .join(" "),
             );
             origLog.apply(console, args);
           };
@@ -1802,10 +1908,10 @@
               await import(/* @vite-ignore */ moduleUrl);
             } else {
               const run = new Function(
-                'return (async () => {\n' + code + '\n})();'
+                "return (async () => {\n" + code + "\n})();",
               );
               const result = run();
-              if (result != null && typeof result.then === 'function') {
+              if (result != null && typeof result.then === "function") {
                 await result;
               }
             }
@@ -1813,69 +1919,69 @@
             // (setTimeout) run after. Yield one turn so timer callbacks still hit our logger.
             await new Promise((resolve) => setTimeout(resolve, 0));
           } catch (e) {
-            logs.push('Error: ' + e.message);
+            logs.push("Error: " + e.message);
           }
 
           console.log = origLog;
 
           const codeBlock = document.getElementById(codeBlockId);
           if (codeBlock) {
-            const outText = logs.join('\n');
+            const outText = logs.join("\n");
             const hasErr = /^Error:/m.test(outText);
             const outHtml = outText
               ? escapeHtml(outText)
               : '<span class="code-output-empty">(no console output)</span>';
             codeBlock.insertAdjacentHTML(
-              'beforeend',
-              `<aside class="code-output${hasErr ? ' is-error' : ''}" aria-label="Program output">
+              "beforeend",
+              `<aside class="code-output${hasErr ? " is-error" : ""}" aria-label="Program output">
                 <div class="code-output-label">Output</div>
                 <pre class="code-output-body"><code>${outHtml}</code></pre>
-              </aside>`
+              </aside>`,
             );
             markExecuted();
           }
         } catch (error) {
-          console.error('Failed to load code file:', error);
+          console.error("Failed to load code file:", error);
         }
       }
 
       window.execute = execute;
 
       function renderBullets(items) {
-        if (!items || !items.length) return '';
+        if (!items || !items.length) return "";
         return `<ul class="bullet-list">${items
           .map((item) => `<li><span>${item}</span></li>`)
-          .join('')}</ul>`;
+          .join("")}</ul>`;
       }
 
       function renderCards(cards, three = false) {
-        if (!cards || !cards.length) return '';
+        if (!cards || !cards.length) return "";
         return `<div class="mini-grid ${
-          cards.length === 3 || three ? 'three' : ''
+          cards.length === 3 || three ? "three" : ""
         }">${cards
           .map(
             ([title, body]) => `
         <div class="mini-card">
           <h3>${title}</h3>
           <p>${body}</p>
-        </div>`
+        </div>`,
           )
-          .join('')}</div>`;
+          .join("")}</div>`;
       }
 
       function renderTable(table) {
-        if (!table || !table.length) return '';
+        if (!table || !table.length) return "";
         const [head, ...rows] = table;
         return `<div class="table-box"><table>
         <thead><tr>${head
           .map((cell) => `<th>${cell}</th>`)
-          .join('')}</tr></thead>
+          .join("")}</tr></thead>
         <tbody>${rows
           .map(
             (row) =>
-              `<tr>${row.map((cell) => `<td>${cell}</td>`).join('')}</tr>`
+              `<tr>${row.map((cell) => `<td>${cell}</td>`).join("")}</tr>`,
           )
-          .join('')}</tbody>
+          .join("")}</tbody>
       </table></div>`;
       }
 
@@ -1886,10 +1992,10 @@
             : `code-${slideIndex}`;
         const wrapInCodeBlock = (raw) =>
           `<div class="code-block" id="${blockId}"><pre class="code-source"><code>${highlightJavaScript(
-            raw
+            raw,
           )}</code></pre></div>`;
 
-        let content = '';
+        let content = "";
         if (code) {
           content = wrapInCodeBlock(code);
         }
@@ -1901,13 +2007,13 @@
             const cleaned = text
               .replace(
                 /\/\/# sourceMappingURL=data:application\/json;base64,[A-Za-z0-9+/=]+\s*/g,
-                ''
+                "",
               )
               .trimEnd();
             content = wrapInCodeBlock(cleaned);
           } catch (error) {
-            console.error('Failed to load code file:', error);
-            content = wrapInCodeBlock('// Error loading code file');
+            console.error("Failed to load code file:", error);
+            content = wrapInCodeBlock("// Error loading code file");
           }
         }
 
@@ -1916,12 +2022,12 @@
 
       (async () => {
         for (const [index, slide] of slides.entries()) {
-          const section = document.createElement('section');
-          section.className = `slide ${index === 0 ? 'active' : ''} ${
-            index > 17 ? 'dense' : ''
+          const section = document.createElement("section");
+          section.className = `slide ${index === 0 ? "active" : ""} ${
+            index > 17 ? "dense" : ""
           }`;
 
-          if (slide.kind === 'cover') {
+          if (slide.kind === "cover") {
             section.innerHTML = `
           <div class="panel cover">
             <div class="slide-grid equal">
@@ -1933,12 +2039,12 @@
                 </div>
                 <div class="footer">${slide.footer
                   .map((item) => `<span class="chip">${item}</span>`)
-                  .join('')}</div>
+                  .join("")}</div>
               </div>
               <div class="cover-art">
                 <div class="orb a">Runtime thinking</div>
                 <div class="orb b">Safer contracts</div>
-                <div class="orb c">Readable tests</div>
+                <div class="orb c">Clear structure</div>
                 <div class="orb d">Better debugging</div>
               </div>
             </div>
@@ -1948,7 +2054,7 @@
           <div class="panel">
             <div class="eyebrow">${slide.eyebrow}</div>
             <h2 class="title">${slide.title}</h2>
-            <p class="lead">${slide.lead || ''}</p>
+            <p class="lead">${slide.lead || ""}</p>
             <div class="agenda-list">
               ${slide.agenda
                 .map(
@@ -1960,47 +2066,47 @@
                     <p>${item[1]}</p>
                   </div>
                 </div>
-              `
+              `,
                 )
-                .join('')}
+                .join("")}
             </div>
           </div>`;
           } else {
-            const layoutClass = slide.layout ? slide.layout : 'equal';
+            const layoutClass = slide.layout ? slide.layout : "equal";
             const narrativeCore = slide.leftSection
               ? `
-            <div class="eyebrow">${slide.eyebrow || ''}</div>
+            <div class="eyebrow">${slide.eyebrow || ""}</div>
             <h2 class="title">${slide.title}</h2>
-            ${slide.lead ? `<p class="lead">${slide.lead}</p>` : ''}
+            ${slide.lead ? `<p class="lead">${slide.lead}</p>` : ""}
             ${
               slide.chips
                 ? `<div class="chips">${slide.chips
                     .map((ch) => `<span class="chip">${ch}</span>`)
-                    .join('')}</div>`
-                : ''
+                    .join("")}</div>`
+                : ""
             }
             ${
               slide.leftSection.title
                 ? `<div class="section-title">${slide.leftSection.title}</div>`
-                : ''
+                : ""
             }
             ${renderBullets(slide.leftSection.bullets)}
             ${
               slide.callout
-                ? `<div class="callout${slide.calloutClass ? ' ' + slide.calloutClass : ''}">${slide.callout}</div>`
-                : ''
+                ? `<div class="callout${slide.calloutClass ? " " + slide.calloutClass : ""}">${slide.callout}</div>`
+                : ""
             }`
-              : '';
+              : "";
 
             const footerNoteHtml = slide.footerNote
               ? `<div class="footer-note">${slide.footerNote}</div>`
-              : '';
+              : "";
 
             const narrativeInner = slide.leftSection
               ? `${narrativeCore}${footerNoteHtml}`
-              : '';
+              : "";
 
-            let code = '';
+            let code = "";
             if (slide.codeExamples && slide.codeExamples.length) {
               for (let i = 0; i < slide.codeExamples.length; i++) {
                 const ex = slide.codeExamples[i];
@@ -2020,9 +2126,17 @@
               slide.rightCards && slide.rightCards.length
                 ? `<div class="section-title">Quick view</div>${renderCards(
                     slide.rightCards,
-                    slide.rightCards.length === 3
+                    slide.rightCards.length === 3,
                   )}`
-                : '';
+                : "";
+
+            const diagramHtml = slide.diagram
+              ? `<div class="slide-diagram"><img src="${escapeHtml(
+                  slide.diagram.src,
+                )}" alt="${escapeHtml(
+                  slide.diagram.alt || "",
+                )}" loading="lazy" /></div>`
+              : "";
 
             const leftSection = slide.leftSection
               ? `<div class="panel">${
@@ -2030,39 +2144,40 @@
                     ? `${narrativeCore}${quickViewBlock}${footerNoteHtml}`
                     : narrativeInner
                 }</div>`
-              : '';
+              : "";
 
             const exampleRunTable = `
             ${
               code && !slide.codeExamples?.length
                 ? `<div class="section-title">Example</div>${code}`
-                : code || ''
+                : code || ""
             }
             ${
               slide.codeFile && !slide.codeExamples?.length
                 ? `<button type="button" class="section-button" onclick="execute(${index})">Run Code</button>`
-                : ''
+                : ""
             }
             ${
               slide.table
                 ? `<div class="section-title">Reference</div>${renderTable(
-                    slide.table
+                    slide.table,
                   )}`
-                : ''
+                : ""
             }`;
 
             const rightSection = `
           <div class="panel">
+            ${diagramHtml}
             ${exampleRunTable}
             ${
               quickViewBlock && !slide.quickViewInLeftPanel
                 ? quickViewBlock
-                : ''
+                : ""
             }
           </div>`;
 
             section.innerHTML = `<div class="slide-grid ${layoutClass}">${
-              layoutClass === 'single'
+              layoutClass === "single"
                 ? leftSection
                 : leftSection + rightSection
             }</div>`;
@@ -2072,14 +2187,14 @@
         }
 
         let current = 0;
-        const slideEls = Array.from(document.querySelectorAll('.slide'));
-        const indicator = document.getElementById('slideIndicator');
-        const progressBar = document.getElementById('progressBar');
+        const slideEls = Array.from(document.querySelectorAll(".slide"));
+        const indicator = document.getElementById("slideIndicator");
+        const progressBar = document.getElementById("progressBar");
 
         function goToSlide(nextIndex) {
           current = Math.max(0, Math.min(slideEls.length - 1, nextIndex));
           slideEls.forEach((slide, idx) => {
-            slide.classList.toggle('active', idx === current);
+            slide.classList.toggle("active", idx === current);
           });
           indicator.textContent = `${current + 1} / ${slideEls.length}`;
           progressBar.style.width = `${
@@ -2089,23 +2204,23 @@
         }
 
         document
-          .getElementById('prevBtn')
-          .addEventListener('click', () => goToSlide(current - 1));
+          .getElementById("prevBtn")
+          .addEventListener("click", () => goToSlide(current - 1));
         document
-          .getElementById('nextBtn')
-          .addEventListener('click', () => goToSlide(current + 1));
+          .getElementById("nextBtn")
+          .addEventListener("click", () => goToSlide(current + 1));
 
-        window.addEventListener('keydown', (event) => {
-          if (['ArrowRight', 'PageDown', ' '].includes(event.key)) {
+        window.addEventListener("keydown", (event) => {
+          if (["ArrowRight", "PageDown", " "].includes(event.key)) {
             event.preventDefault();
             goToSlide(current + 1);
           }
-          if (['ArrowLeft', 'PageUp'].includes(event.key)) {
+          if (["ArrowLeft", "PageUp"].includes(event.key)) {
             event.preventDefault();
             goToSlide(current - 1);
           }
-          if (event.key === 'Home') goToSlide(0);
-          if (event.key === 'End') goToSlide(slideEls.length - 1);
+          if (event.key === "Home") goToSlide(0);
+          if (event.key === "End") goToSlide(slideEls.length - 1);
         });
 
         const hashMatch = location.hash.match(/slide-(\d+)/);
