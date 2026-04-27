@@ -21,8 +21,6 @@ const multiply = (a, b) => a * b;
 // Arrow function with implicit return
 const createObject = (a, b) => ({ a, b });
 
-
-
 console.log(sum(3, 3));
 console.log(sumValuesToStore(1, 1));
 console.log(total);
