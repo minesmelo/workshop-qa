@@ -555,6 +555,35 @@
         background: rgba(102, 227, 255, 0.12);
       }
 
+      .slide--thank-you .panel.thank-you-panel {
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        min-height: 100%;
+      }
+      .thank-you-inner {
+        position: relative;
+        z-index: 2;
+        max-width: 32ch;
+      }
+      .thank-you-title {
+        font-size: clamp(2.4rem, 6.5vw, 3.9rem);
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1.1;
+        margin: 0 0 0.4em;
+        background: linear-gradient(125deg, #66e3ff, #8b6cff, #31d39b);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .thank-you-subtitle {
+        font-size: 1.15rem;
+        color: var(--muted);
+        line-height: 1.5;
+        margin: 0;
+      }
+
       .closing-block__qr-wrap {
         margin: 12px auto 0;
         display: block;
@@ -1052,6 +1081,7 @@
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
     <script type="module">
       const slides = [
         {
@@ -1856,6 +1886,11 @@ console.log(total + 1);`,
             },
           ],
         },
+        {
+          kind: "thankYou",
+          title: "Thank you",
+          subtitle: "We hope the workshop was useful — see you next time.",
+        },
       ];
 
       const slidesEl = document.getElementById("slides");
@@ -2297,6 +2332,7 @@ console.log(total + 1);`,
             "slide",
             index === 0 ? "active" : "",
             index > 19 ? "dense" : "",
+            slide.kind === "thankYou" ? "slide--thank-you" : "",
           ]
             .filter(Boolean)
             .join(" ");
@@ -2321,6 +2357,18 @@ console.log(total + 1);`,
                 <div class="orb c">Clear structure</div>
                 <div class="orb d">Better debugging</div>
               </div>
+            </div>
+          </div>`;
+          } else if (slide.kind === "thankYou") {
+            section.innerHTML = `
+          <div class="panel thank-you-panel">
+            <div class="thank-you-inner">
+              <h1 class="thank-you-title">${slide.title}</h1>
+              ${
+                slide.subtitle
+                  ? `<p class="thank-you-subtitle">${slide.subtitle}</p>`
+                  : ""
+              }
             </div>
           </div>`;
           } else if (slide.kind === "closing" && slide.closingBlocks?.length) {
@@ -2505,8 +2553,18 @@ console.log(total + 1);`,
         let current = 0;
         const slideEls = Array.from(document.querySelectorAll(".slide"));
         const progressBar = document.getElementById("progressBar");
+        const thankYouSlideIndex = slides.findIndex((s) => s.kind === "thankYou");
+        let thankYouConfettiId = null;
+        const confettiLib =
+          typeof globalThis !== "undefined" && typeof globalThis.confetti === "function"
+            ? globalThis.confetti
+            : null;
 
         function goToSlide(nextIndex) {
+          if (thankYouConfettiId !== null) {
+            clearInterval(thankYouConfettiId);
+            thankYouConfettiId = null;
+          }
           current = Math.max(0, Math.min(slideEls.length - 1, nextIndex));
           slideEls.forEach((slide, idx) => {
             slide.classList.toggle("active", idx === current);
@@ -2515,6 +2573,74 @@ console.log(total + 1);`,
             ((current + 1) / slideEls.length) * 100
           }%`;
           location.hash = `slide-${current + 1}`;
+
+          if (
+            thankYouSlideIndex >= 0 &&
+            current === thankYouSlideIndex &&
+            confettiLib
+          ) {
+            const confettiColors = [
+              "#66e3ff",
+              "#8b6cff",
+              "#31d39b",
+              "#ffcf5a",
+              "#ff7d9b",
+              "#eef4ff",
+            ];
+            void confettiLib({
+              particleCount: 140,
+              spread: 100,
+              origin: { y: 0.28, x: 0.5 },
+              colors: confettiColors,
+              zIndex: 35,
+            });
+            setTimeout(() => {
+              if (current !== thankYouSlideIndex) return;
+              void confettiLib({
+                particleCount: 90,
+                spread: 120,
+                startVelocity: 50,
+                origin: { y: 0.55, x: 0.2 },
+                colors: confettiColors,
+                zIndex: 35,
+              });
+            }, 220);
+            setTimeout(() => {
+              if (current !== thankYouSlideIndex) return;
+              void confettiLib({
+                particleCount: 90,
+                spread: 120,
+                startVelocity: 50,
+                origin: { y: 0.55, x: 0.8 },
+                colors: confettiColors,
+                zIndex: 35,
+              });
+            }, 420);
+            thankYouConfettiId = setInterval(() => {
+              if (current !== thankYouSlideIndex) {
+                if (thankYouConfettiId !== null) {
+                  clearInterval(thankYouConfettiId);
+                  thankYouConfettiId = null;
+                }
+                return;
+              }
+              void confettiLib({
+                particleCount: 4,
+                spread: 55,
+                startVelocity: 32,
+                angle: 90,
+                origin: {
+                  x: 0.08 + Math.random() * 0.84,
+                  y: -0.04,
+                },
+                gravity: 0.9,
+                ticks: 200,
+                colors: confettiColors,
+                zIndex: 35,
+                scalar: 0.9,
+              });
+            }, 320);
+          }
         }
 
         document
