@@ -148,8 +148,6 @@
         pointer-events: none;
       }
 
-      .slide-indicator,
-      .hint,
       .brand {
         pointer-events: auto;
         border: 1px solid rgba(255, 255, 255, 0.08);
@@ -430,6 +428,10 @@
         margin-bottom: 10px;
       }
 
+      .section-title.section-title--reference {
+        padding-top: 1.25rem;
+      }
+
       .section-button {
         font-size: 0.88rem;
         letter-spacing: 0.12em;
@@ -442,12 +444,30 @@
         padding: 5px;
       }
 
+      .section-button:disabled {
+        opacity: 0.65;
+        cursor: not-allowed;
+      }
+
+      .section-button:disabled,
+      .section-button[aria-busy="true"] {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+
       .code-example {
         margin-bottom: 20px;
       }
 
       .code-example:last-child {
         margin-bottom: 0;
+      }
+
+      .code-example-hint {
+        margin: 10px 0 0;
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.4;
       }
 
       .bullet-list {
@@ -540,15 +560,16 @@
         letter-spacing: 0.04em;
       }
 
+      /* All slides: slightly tighter code so more lines fit (same for ES6 and everywhere) */
       .code-block {
-        padding: 18px 20px;
+        padding: 10px 14px 12px;
         font-family:
           "SFMono-Regular", ui-monospace, SFMono-Regular, Menlo, Consolas,
           monospace;
-        font-size: 0.92rem;
-        line-height: 1.55;
+        font-size: 0.8rem;
+        line-height: 1.4;
         overflow: auto;
-        margin-top: 14px;
+        margin-top: 10px;
         display: flex;
         flex-direction: column;
         gap: 0;
@@ -590,18 +611,20 @@
       }
 
       .code-output {
-        margin-top: 14px;
-        padding: 14px 16px 16px;
-        border-radius: 18px;
+        margin-top: 10px;
+        padding: 10px 12px 12px;
+        border-radius: 16px;
         background: rgba(0, 0, 0, 0.28);
         border: 1px solid rgba(49, 211, 155, 0.2);
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        font-size: 0.8rem;
+        line-height: 1.4;
       }
 
       .code-output-label {
-        margin: 0 0 10px;
+        margin: 0 0 6px;
         font-family: inherit;
-        font-size: 0.82rem;
+        font-size: 0.75rem;
         font-weight: 600;
         letter-spacing: 0.06em;
         text-transform: uppercase;
@@ -747,6 +770,27 @@
         background: rgba(255, 255, 255, 0.28);
       }
 
+      .agenda-group {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      .agenda-group + .agenda-group {
+        margin-top: 20px;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .agenda-group-title {
+        font-size: 0.88rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin: 0 0 2px 2px;
+      }
+
       .agenda-item {
         display: grid;
         grid-template-columns: 56px 1fr;
@@ -781,6 +825,65 @@
       .agenda-item p {
         color: var(--muted);
         font-size: 0.94rem;
+      }
+
+      /* Slide 2 — tighter agenda: less padding, smaller type, denser items */
+      .panel--agenda-compact {
+        padding: 22px 24px;
+      }
+      .panel--agenda-compact > .eyebrow {
+        margin-bottom: 8px;
+        padding: 6px 10px;
+        font-size: 0.78rem;
+      }
+      .panel--agenda-compact > .title {
+        font-size: clamp(1.45rem, 2.1vw, 1.95rem);
+        margin-bottom: 4px;
+        max-width: none;
+      }
+      .panel--agenda-compact > .lead {
+        font-size: 0.95rem;
+        line-height: 1.4;
+        margin-bottom: 10px;
+        max-width: 70ch;
+      }
+      .panel--agenda-compact .agenda-list {
+        gap: 8px;
+        margin-top: 2px;
+      }
+      .panel--agenda-compact .agenda-group {
+        gap: 8px;
+      }
+      .panel--agenda-compact .agenda-group + .agenda-group {
+        margin-top: 10px;
+        padding-top: 10px;
+      }
+      .panel--agenda-compact .agenda-group-title {
+        font-size: 0.8rem;
+        margin: 0 0 0 1px;
+      }
+      .panel--agenda-compact .agenda-item {
+        grid-template-columns: 40px 1fr;
+        gap: 10px;
+        padding: 10px 12px;
+        border-radius: 16px;
+        align-items: start;
+      }
+      .panel--agenda-compact .agenda-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        font-size: 1.02rem;
+      }
+      .panel--agenda-compact .agenda-item h3 {
+        font-size: 0.95rem;
+        margin-bottom: 2px;
+        line-height: 1.2;
+      }
+      .panel--agenda-compact .agenda-item p {
+        font-size: 0.85rem;
+        line-height: 1.35;
+        margin: 0;
       }
 
       .split-stack {
@@ -844,9 +947,13 @@
       .dense .mini-card p,
       .dense td,
       .dense .callout,
-      .dense .code-block,
       .dense .lead {
         font-size: 0.94rem;
+      }
+
+      .dense .code-block,
+      .dense .code-output {
+        font-size: 0.8rem;
       }
 
       .dense .title {
@@ -898,10 +1005,6 @@
         <div class="brand">
           <strong>Workshop JS/TS</strong> · JavaScript & TypeScript foundations
         </div>
-        <div class="slide-indicator" id="slideIndicator">1 / 34</div>
-        <div class="hint">
-          Use <strong>←</strong> <strong>→</strong> or click the arrows
-        </div>
       </div>
 
       <div class="nav-btns">
@@ -923,36 +1026,60 @@
           title: "Agenda",
           eyebrow: "Roadmap",
           lead: "A practical path from JavaScript basics to TypeScript patterns for everyday development.",
-          agenda: [
-            [
-              "JavaScript foundations",
-              "How JS behaves and why that matters in automation.",
-            ],
-            [
-              "Values, objects, and arrays",
-              "The difference between copying values and sharing references.",
-            ],
-            [
-              "Conditions, loops & reusable code",
-              "Clearer branching, repetition, and helper functions.",
-            ],
-            [
-              "Async JavaScript and HTTP",
-              "Promises, await, requests, and the event loop.",
-            ],
-            [
-              "Common JavaScript pitfalls",
-              "Surprising behavior and how to avoid it.",
-            ],
-            [
-              "TypeScript essentials for safer code",
-              "Types, contracts, narrowing, and useful utilities.",
-            ],
+          agendaCompact: true,
+          agendaGroups: [
+            {
+              title: '<span class="highlight">JavaScript</span>',
+              items: [
+                [
+                  "JavaScript foundations",
+                  "How JS behaves and why that matters in automation.",
+                ],
+                [
+                  "Values, objects, and arrays",
+                  "The difference between copying values and sharing references.",
+                ],
+                [
+                  "Conditions, loops & reusable code",
+                  "Clearer branching, repetition, and helper functions.",
+                ],
+                [
+                  "Async JavaScript and HTTP",
+                  "Promises, await, requests, and the event loop.",
+                ],
+                [
+                  "Common JavaScript pitfalls",
+                  "Surprising behavior and how to avoid it.",
+                ],
+              ],
+            },
+            {
+              title: '<span class="highlight">TypeScript</span>',
+              items: [
+                [
+                  "TypeScript essentials for safer code",
+                  "Types, contracts, narrowing, and useful utilities.",
+                ],
+              ],
+            },
           ],
         },
         {
-          title: "JS Foundations: Main Characteristics",
+          title: "Part 1 · JavaScript",
           eyebrow: "Slide 3",
+          layout: "single",
+          lead: "From here the workshop focuses on <strong>JavaScript</strong> — how it runs, core syntax, async, and HTTP. This block is the base for reading and writing JS in tests, tools, and apps.",
+          leftSection: {
+            title: "In this section",
+            bullets: [
+              "Types, values, and control flow you will see in everyday code.",
+              "Async behavior, requests, and where surprises usually show up.",
+            ],
+          },
+        },
+        {
+          title: "Main Characteristics",
+          eyebrow: "Slide 4",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -980,7 +1107,7 @@
         },
         {
           title: "Variable Declarations",
-          eyebrow: "Slide 4",
+          eyebrow: "Slide 5",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -997,7 +1124,7 @@
         },
         {
           title: "Primitive Types",
-          eyebrow: "Slide 5",
+          eyebrow: "Slide 6",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1015,7 +1142,7 @@
         },
         {
           title: "Objects & Arrays",
-          eyebrow: "Slide 6",
+          eyebrow: "Slide 7",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1033,7 +1160,7 @@
         },
         {
           title: "Truthy Values",
-          eyebrow: "Slide 7",
+          eyebrow: "Slide 8",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1049,7 +1176,7 @@
         },
         {
           title: "Falsy Values",
-          eyebrow: "Slide 8",
+          eyebrow: "Slide 9",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1065,7 +1192,7 @@
         },
         {
           title: "Functions, Arrow Functions & Return",
-          eyebrow: "Slide 9",
+          eyebrow: "Slide 10",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1082,7 +1209,7 @@
         },
         {
           title: "Conditionals & Loops",
-          eyebrow: "Slide 10",
+          eyebrow: "Slide 11",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1102,7 +1229,7 @@
         },
         {
           title: "Array Built-in Methods: Transform & Iterate",
-          eyebrow: "Slide 11",
+          eyebrow: "Slide 12",
           layout: "equal",
           leftSection: {
             title: "Core methods",
@@ -1120,7 +1247,7 @@
         },
         {
           title: "Array Built-in Methods: Search & Validate",
-          eyebrow: "Slide 12",
+          eyebrow: "Slide 13",
           layout: "equal",
           leftSection: {
             title: "Core methods",
@@ -1138,7 +1265,7 @@
         },
         {
           title: "Import / Export",
-          eyebrow: "Slide 13",
+          eyebrow: "Slide 14",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1155,7 +1282,7 @@
         },
         {
           title: "Built-in API: Part 1",
-          eyebrow: "Slide 14",
+          eyebrow: "Slide 15",
           layout: "equal",
           leftSection: {
             title: "Built-in helpers you use all the time",
@@ -1173,7 +1300,7 @@
         },
         {
           title: "Built-in API: Part 2",
-          eyebrow: "Slide 15",
+          eyebrow: "Slide 16",
           layout: "equal",
           leftSection: {
             title: "Object and number helpers",
@@ -1189,7 +1316,7 @@
         },
         {
           title: "Throw, Try/Catch, Finally",
-          eyebrow: "Slide 16",
+          eyebrow: "Slide 17",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1207,7 +1334,7 @@
         },
         {
           title: "Promises",
-          eyebrow: "Slide 17",
+          eyebrow: "Slide 18",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1215,16 +1342,26 @@
               "A Promise represents work that finishes later.",
               'It can be <span class="good">fulfilled</span>, <span class="danger">rejected</span>, and still run cleanup in <code>finally</code>.',
               "<code>then</code>, <code>catch</code>, and <code>finally</code> describe those paths.",
+              "<strong>Detox / E2E:</strong> the same model — <code>async</code> tests, <code>await</code> for each app step, and <code>Promise.all</code> to wait on several independent promises at once. See the second example; full MyBets tests live in <a href=\"https://github.com/fanduel/sportsbook/blob/develop/apps/sportsbook/src/modules/myBets/screens/MyBetsScreen/__tests__/MyBets.Active.detox.acc.ts\" target=\"_blank\" rel=\"noopener noreferrer\">sportsbook</a>.",
             ],
           },
-          codeFile: "js/asyncronous_slide16.js",
-          executedCode: false,
           callout:
-            "<strong>Real-life parallel:</strong> like placing a food delivery order now and getting the result later — delivered, failed, or cleaned up when loading stops.",
+            '<strong>Real-life parallel:</strong> like placing a food delivery order now and getting the result later — delivered, failed, or cleaned up when loading stops. <strong>E2E parallel:</strong> same idea as checking two counters at the bank at once with <code>Promise.all</code> instead of waiting in line twice.',
+          codeExamples: [
+            {
+              title: "Promises in JS",
+              file: "js/asyncronous_slide16.js",
+            },
+            {
+              title: "Detox (async / await) — from MyBets E2E",
+              file: "ts/slide18_detox_mybets.ts",
+              readOnly: true,
+            },
+          ],
         },
         {
           title: "Async / Await",
-          eyebrow: "Slide 18",
+          eyebrow: "Slide 19",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1241,13 +1378,14 @@
         },
         {
           title: "HTTP Requests",
-          eyebrow: "Slide 19",
+          eyebrow: "Slide 20",
           layout: "equal",
           leftSection: {
             title: "Core points",
             bullets: [
               "A client sends a request and a server responds.",
               "<code>GET</code> = retrieve, <code>POST</code> = create, <code>PUT</code> = update, <code>OPTIONS</code> = ask what is allowed.",
+              "HTTP defines <span class=\"highlight\">more methods</span> than the table below — e.g. <code>DELETE</code> (remove a resource), <code>PATCH</code> (partial update), <code>HEAD</code> (like GET but headers only). You’ll see others in API docs; this list is the common core.",
               "Common tools: <code>fetch</code> and <code>axios</code>.",
               "Validate both status and response shape.",
             ],
@@ -1264,7 +1402,7 @@
         },
         {
           title: "Event Loop",
-          eyebrow: "Slide 20",
+          eyebrow: "Slide 21",
           layout: "equal",
           leftSection: {
             title: "What is happening?",
@@ -1285,8 +1423,27 @@
             '<strong>Real-life parallel:</strong> airport check-in — one agent serves one passenger at a time (like a single thread). Who is at the desk right now is the <span class="highlight">call stack</span>. Urgent follow-ups at the side are <span class="highlight">microtasks</span>. Everyone waiting in the regular line is the <span class="highlight">macrotask</span> queue.',
         },
         {
+          title: "ES6",
+          eyebrow: "Slide 22",
+          lead:
+            '<span class="highlight">ES6</span> (ECMAScript 2015) is the sixth major edition of the official JavaScript language standard. It shipped a large batch of new syntax and built-ins; people often say <strong>“modern JavaScript”</strong> to mean ES6 and everything after (ES6+).',
+          layout: "equal",
+          leftSection: {
+            title: "What to remember on this slide",
+            bullets: [
+              "<strong>const &amp; let</strong> — <code>const</code> once, <code>let</code> when you reassign; both are block-scoped.",
+              "<strong>Destructuring</strong> — object: <code>{ id, name }</code> · array: <code>[a, b, ...rest]</code> (skip slots with commas).",
+              "<strong>Spread &amp; rest</strong> — <code>...</code> spreads values when copying or merging (e.g. <code>[...arr, x]</code>); in parameters, <code>...name</code> is <em>rest</em> and gathers the remaining args into an array.",
+              "<strong>Optional chaining</strong> — <code>?.</code> only continues the chain if the left side is not null/undefined; otherwise the whole expression is undefined.",
+              "<strong>Nullish coalescing</strong> — <code>??</code> picks the right side only when the left is <code>null</code> or <code>undefined</code> (unlike <code>||</code>, which also treats <code>0</code> and <code>\"\"</code> as falsy).",
+              "<strong>for...of</strong> — iterates the values of an iterable (e.g. array elements) in order.",
+            ],
+          },
+          code: `// const & let\nconst c = 1;\nlet stage = 'draft';\nstage = 'review';\n\n// object + object destructuring\nconst user = { id: 1, name: 'Ana', lead: { name: 'Sam' } };\nconst { id, name } = user;\n\n// array destructuring + rest; spread into new array\nconst phases = ['draft', 'review', 'ship'];\nconst [first, second, ...more] = phases;\nconst plan = [...phases, 'archive'];\n\n// rest params (...t) + spread in a call\nconst line = (h, ...t) => h + ': ' + t.join(', ');\nconsole.log(line(first, ...more));\n\n// optional chaining (?.) + nullish coalescing (??)\nconst lead = user.lead?.name;\nconst backup = user.deputy?.name ?? 'n/a';\nconsole.log({ id, name, lead, backup });\n\n// nested optional chain + ?? default\nconst body = { data: { status: 200 } };\nconsole.log(body?.data?.status ?? '—');\n\n// for...of over iterable\nfor (const s of plan) console.log(s);`,
+        },
+        {
           title: "Issues with Using JS",
-          eyebrow: "Slide 21",
+          eyebrow: "Slide 23",
           layout: "equal",
           leftSection: {
             title: "Where the friction shows up",
@@ -1315,25 +1472,8 @@
             "<strong>Main idea:</strong> JavaScript is powerful and flexible — but that flexibility can become risk if code grows without structure.",
         },
         {
-          title: "ES6 Modern JS Features You’ll See Everywhere",
-          eyebrow: "Slide 22",
-          layout: "equal",
-          leftSection: {
-            title: "What is ES6?",
-            bullets: [
-              '<span class="highlight">ES6 (2015)</span> — big syntax refresh; “modern JS” = ES6+.',
-              "<code>const</code> once, <code>let</code> when you reassign; both are block-scoped.",
-              "<strong>Destructuring</strong> — object: <code>{ id, name }</code> · array: <code>[a, b, ...rest]</code> (skip slots with commas).",
-              "<strong>Spread</strong> <code>...</code> copies or merges (e.g. <code>[...arr, x]</code>). <strong>Rest</strong> in params gathers extra args.",
-              '<strong><code>?.</code></strong> safe access if left side is null/undefined. <strong><code>??</code></strong> default only for null/undefined (not <code>0</code> / <code>""</code> like <code>||</code>).',
-              "<code>for...of</code> — iterate values in order.",
-            ],
-          },
-          code: `// object + object destructuring\nconst user = { id: 1, name: 'Ana', lead: { name: 'Sam' } };\nconst { id, name } = user;\n\n// optional chaining (?.) + nullish coalescing (??)\nconst lead = user.lead?.name;\nconst backup = user.deputy?.name ?? 'n/a';\n\n// array destructuring + rest; spread into new array\nconst phases = ['draft', 'review', 'ship'];\nconst [first, second, ...more] = phases;\nconst plan = [...phases, 'archive'];\n\n// rest params (...t) + spread in a call\nconst line = (h, ...t) => h + ': ' + t.join(', ');\nconsole.log(line(first, ...more));\nconsole.log({ id, name, lead, backup });\n\n// nested optional chain + ?? default\nconst body = { data: { status: 200 } };\nconsole.log(body?.data?.status ?? '—');\n\n// for...of over iterable\nfor (const s of plan) console.log(s);`,
-        },
-        {
           title: "API Call Example: Mock vs Real Backend",
-          eyebrow: "Slide 23",
+          eyebrow: "Slide 24",
           layout: "equal",
           leftSection: {
             title: "What to check",
@@ -1362,10 +1502,24 @@
           code: "https://api-22.postman.co/workspace/Sportsbook-Services~4bd98ad6-ed5c-44ab-91cf-e1427e326fca/request/24448960-0305d547-4b03-43a2-8fa8-453e8ea7c044?action=share&creator=37556128&active-environment=24448960-b70d5e3b-c3bc-4c77-8c61-1cb972a26697",
           callout:
             "<strong>Real-life parallel:</strong> simulator vs real flight. A simulator is controlled and repeatable; a real flight is realistic but noisier.",
+          referenceTopPadding: true,
         },
         {
-          title: "TypeScript: Basic Explanation",
-          eyebrow: "Slide 24",
+          title: "Part 2 · TypeScript",
+          eyebrow: "Slide 25",
+          layout: "single",
+          lead: "We are moving into the <strong>TypeScript</strong> part of the workshop — JavaScript with static types, compile-time checks, and patterns for safer, clearer code.",
+          leftSection: {
+            title: "In this section",
+            bullets: [
+              "Types, interfaces, and what the compiler checks before runtime.",
+              "Narrowing, utility types, and patterns you will see in real codebases.",
+            ],
+          },
+        },
+        {
+          title: "Basic Explanation",
+          eyebrow: "Slide 26",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1392,8 +1546,8 @@
           ],
         },
         {
-          title: "TypeScript: Basic Types",
-          eyebrow: "Slide 25",
+          title: "Basic Types",
+          eyebrow: "Slide 27",
           layout: "equal",
           leftSection: {
             title: "Common types",
@@ -1414,8 +1568,8 @@
           code: `let title: string = 'checkout';\nlet duration: number = 1200;\nlet done: boolean = true;\nlet tags: string[] = ['urgent', 'internal'];\nlet payload: object = { ok: true };\nlet nothing: null = null;\nlet missing: undefined = undefined;\n\nfunction logMessage(msg: string): void {\n  console.log(msg);\n}`,
         },
         {
-          title: "TypeScript: Custom Types",
-          eyebrow: "Slide 26",
+          title: "Custom Types",
+          eyebrow: "Slide 28",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1430,8 +1584,8 @@
             "<strong>Real-life parallel:</strong> a custom type is like a template form everyone must follow.",
         },
         {
-          title: "TypeScript: any vs unknown",
-          eyebrow: "Slide 27",
+          title: "Any vs Unknown",
+          eyebrow: "Slide 29",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1446,8 +1600,8 @@
             "<strong>Real-life parallel:</strong> <code>any</code> is letting someone through security with no checks. <code>unknown</code> is asking for ID before entry.",
         },
         {
-          title: "TypeScript: Union & Intersection Types",
-          eyebrow: "Slide 28",
+          title: "Union & Intersection Types",
+          eyebrow: "Slide 30",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1479,9 +1633,10 @@ const wrong: ReadyToBoard = { name: 'Ana', checkedIn: false };
             "<strong>Real-life parallel:</strong> union = boarding pass can be paper or mobile. Intersection = ready to board means you are a passenger <em>and</em> checked in — both labels apply to the <strong>same</strong> person.",
         },
         {
-          title: "TypeScript: Interface vs Type",
-          eyebrow: "Slide 29",
+          title: "Interface vs Type",
+          eyebrow: "Slide 31",
           layout: "equal",
+          referenceInLeft: true,
           leftSection: {
             title: "Core points",
             bullets: [
@@ -1516,8 +1671,8 @@ type Pet = Dog | Bird;`,
             "<strong>Practical rule:</strong> use either consistently, but reach for <code>type</code> when composition is mostly <code>|</code> / <code>&</code>, and <code>interface</code> when you want a readable chain of <code>extends</code>.",
         },
         {
-          title: "TypeScript: Optional vs Required Fields",
-          eyebrow: "Slide 30",
+          title: "Optional vs Required Fields",
+          eyebrow: "Slide 32",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1549,8 +1704,8 @@ logUser(1, 'Ace');`,
             "<strong>Remember:</strong> <code>middleName?</code> means the property can be missing on the object. <code>nickname: string | undefined</code> means the property is part of <code>User</code>, but you may assign <code>undefined</code> to it.",
         },
         {
-          title: "TypeScript: Utility Types",
-          eyebrow: "Slide 31",
+          title: "Utility Types",
+          eyebrow: "Slide 33",
           layout: "equal",
           leftSection: {
             title: "Core utilities",
@@ -1582,8 +1737,8 @@ type LockedUser = Readonly<User>;`,
             '<strong>Real-life parallel:</strong> <span class="highlight">Pick</span> = select only needed check-in fields. <span class="highlight">Omit</span> = remove confidential fields. <span class="highlight">Readonly</span> = locked official document. <span class="highlight">Partial</span> = incomplete draft form. <span class="highlight">Record</span> = lookup table.',
         },
         {
-          title: "TypeScript: Enum",
-          eyebrow: "Slide 32",
+          title: "Enum",
+          eyebrow: "Slide 34",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1614,8 +1769,8 @@ type StatusLiteral = (typeof Statuses)[keyof typeof Statuses];
             "<strong>Practical take:</strong> use <code>enum</code> when your team standardizes on it and you accept the emitted JS. Use <code>as const</code> objects when you want the same fixed vocabulary with <strong>no extra enum runtime</strong> and tighter literal inference.",
         },
         {
-          title: "TypeScript: Type Inference & Type Casting",
-          eyebrow: "Slide 33",
+          title: "Type Inference & Type Casting",
+          eyebrow: "Slide 35",
           layout: "equal",
           leftSection: {
             title: "Core points",
@@ -1639,7 +1794,7 @@ console.log(total + 1);`,
         },
         {
           title: "QA & formulation feedback",
-          eyebrow: "Slide 34",
+          eyebrow: "Slide 36",
           layout: "equal",
           lead: "Before we close — a few prompts to capture what landed and how you want to use it.",
           leftSection: {
@@ -1833,6 +1988,8 @@ console.log(total + 1);`,
         return out;
       }
 
+      const runCodeInFlight = new Set();
+
       async function execute(slideIndex, exampleIndex) {
         const slide = slides[slideIndex];
         if (!slide) return;
@@ -1849,7 +2006,7 @@ console.log(total + 1);`,
           exampleIndex !== null
         ) {
           const ex = slide.codeExamples[exampleIndex];
-          if (!ex || ex.executedCode) return;
+          if (!ex || ex.executedCode || ex.readOnly) return;
           file = ex.file;
           useESModule = Boolean(ex.runAsESModule);
           codeBlockId = "code-" + slideIndex + "-" + exampleIndex;
@@ -1866,6 +2023,22 @@ console.log(total + 1);`,
           };
         }
 
+        if (runCodeInFlight.has(codeBlockId)) return;
+        runCodeInFlight.add(codeBlockId);
+
+        const runBtnId =
+          exampleIndex !== undefined && exampleIndex !== null
+            ? "runCodeBtn-" + slideIndex + "-" + exampleIndex
+            : "runCodeBtn-" + slideIndex;
+        const runBtn = document.getElementById(runBtnId);
+        const runLabelDefault = runBtn ? runBtn.textContent : "Run Code";
+        if (runBtn) {
+          runBtn.disabled = true;
+          runBtn.setAttribute("aria-busy", "true");
+          runBtn.textContent = "Running…";
+        }
+
+        let runSucceeded = false;
         try {
           const response = await fetch(file);
           let code = await response.text();
@@ -1939,13 +2112,53 @@ console.log(total + 1);`,
               </aside>`,
             );
             markExecuted();
+            runSucceeded = true;
           }
         } catch (error) {
           console.error("Failed to load code file:", error);
+        } finally {
+          runCodeInFlight.delete(codeBlockId);
+          if (runBtn) {
+            runBtn.removeAttribute("aria-busy");
+            if (runSucceeded) {
+              runBtn.disabled = true;
+              runBtn.textContent = "Done";
+            } else {
+              runBtn.disabled = false;
+              runBtn.textContent = runLabelDefault;
+            }
+          }
         }
       }
 
       window.execute = execute;
+
+      function renderAgendaGroups(groups) {
+        let n = 0;
+        return groups
+          .map((group) => {
+            const items = group.items
+              .map((item) => {
+                n += 1;
+                return `
+                <div class="agenda-item">
+                  <div class="agenda-number">${n}</div>
+                  <div>
+                    <h3>${item[0]}</h3>
+                    <p>${item[1]}</p>
+                  </div>
+                </div>`;
+              })
+              .join("");
+            return `
+            <div class="agenda-group">
+              <div class="agenda-group-title">${group.title}</div>
+              ${items}
+            </div>
+          `;
+          })
+          .join("");
+      }
 
       function renderBullets(items) {
         if (!items || !items.length) return "";
@@ -2023,9 +2236,13 @@ console.log(total + 1);`,
       (async () => {
         for (const [index, slide] of slides.entries()) {
           const section = document.createElement("section");
-          section.className = `slide ${index === 0 ? "active" : ""} ${
-            index > 17 ? "dense" : ""
-          }`;
+          section.className = [
+            "slide",
+            index === 0 ? "active" : "",
+            index > 19 ? "dense" : "",
+          ]
+            .filter(Boolean)
+            .join(" ");
 
           if (slide.kind === "cover") {
             section.innerHTML = `
@@ -2049,14 +2266,10 @@ console.log(total + 1);`,
               </div>
             </div>
           </div>`;
-          } else if (slide.agenda) {
-            section.innerHTML = `
-          <div class="panel">
-            <div class="eyebrow">${slide.eyebrow}</div>
-            <h2 class="title">${slide.title}</h2>
-            <p class="lead">${slide.lead || ""}</p>
-            <div class="agenda-list">
-              ${slide.agenda
+          } else if (slide.agendaGroups || slide.agenda) {
+            const agendaHtml = slide.agendaGroups
+              ? renderAgendaGroups(slide.agendaGroups)
+              : slide.agenda
                 .map(
                   (item, idx) => `
                 <div class="agenda-item">
@@ -2068,7 +2281,17 @@ console.log(total + 1);`,
                 </div>
               `,
                 )
-                .join("")}
+                .join("");
+            const agendaPanelClass = slide.agendaCompact
+              ? "panel panel--agenda-compact"
+              : "panel";
+            section.innerHTML = `
+          <div class="${agendaPanelClass}">
+            <div class="eyebrow">${slide.eyebrow}</div>
+            <h2 class="title">${slide.title}</h2>
+            <p class="lead">${slide.lead || ""}</p>
+            <div class="agenda-list">
+              ${agendaHtml}
             </div>
           </div>`;
           } else {
@@ -2095,6 +2318,13 @@ console.log(total + 1);`,
               slide.callout
                 ? `<div class="callout${slide.calloutClass ? " " + slide.calloutClass : ""}">${slide.callout}</div>`
                 : ""
+            }
+            ${
+              slide.referenceInLeft && slide.table
+                ? `<div class="section-title section-title--reference">Reference</div>${renderTable(
+                    slide.table,
+                  )}`
+                : ""
             }`
               : "";
 
@@ -2115,7 +2345,11 @@ console.log(total + 1);`,
                   code += `<div class="section-title">${ex.title}</div>`;
                 }
                 code += await renderCode(null, ex.file, index, i);
-                code += `<button type="button" class="section-button" onclick="execute(${index}, ${i})">Run Code</button>`;
+                if (!ex.readOnly) {
+                  code += `<button type="button" id="runCodeBtn-${index}-${i}" class="section-button" onclick="execute(${index}, ${i})">Run Code</button>`;
+                } else {
+                  code += `<p class="code-example-hint">Read-only — E2E runs in Detox, not in this browser runner.</p>`;
+                }
                 code += `</div>`;
               }
             } else {
@@ -2154,14 +2388,16 @@ console.log(total + 1);`,
             }
             ${
               slide.codeFile && !slide.codeExamples?.length
-                ? `<button type="button" class="section-button" onclick="execute(${index})">Run Code</button>`
+                ? `<button type="button" id="runCodeBtn-${index}" class="section-button" onclick="execute(${index})">Run Code</button>`
                 : ""
             }
             ${
-              slide.table
-                ? `<div class="section-title">Reference</div>${renderTable(
-                    slide.table,
-                  )}`
+              slide.table && !slide.referenceInLeft
+                ? `<div class="section-title${
+                    slide.referenceTopPadding
+                      ? " section-title--reference"
+                      : ""
+                  }">Reference</div>${renderTable(slide.table)}`
                 : ""
             }`;
 
@@ -2188,7 +2424,6 @@ console.log(total + 1);`,
 
         let current = 0;
         const slideEls = Array.from(document.querySelectorAll(".slide"));
-        const indicator = document.getElementById("slideIndicator");
         const progressBar = document.getElementById("progressBar");
 
         function goToSlide(nextIndex) {
@@ -2196,7 +2431,6 @@ console.log(total + 1);`,
           slideEls.forEach((slide, idx) => {
             slide.classList.toggle("active", idx === current);
           });
-          indicator.textContent = `${current + 1} / ${slideEls.length}`;
           progressBar.style.width = `${
             ((current + 1) / slideEls.length) * 100
           }%`;
