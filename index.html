@@ -534,6 +534,45 @@
         font-size: 0.94rem;
       }
 
+      .closing-grid {
+        margin-top: 4px;
+      }
+      .closing-block__link {
+        display: inline-flex;
+        align-items: center;
+        margin-top: 12px;
+        font-size: 0.88rem;
+        letter-spacing: 0.1em;
+        font-weight: 700;
+        color: #fff;
+        text-decoration: none;
+        background: transparent;
+        border-radius: 4px;
+        border: 2px solid var(--accent);
+        padding: 8px 12px;
+      }
+      .closing-block__link:hover {
+        background: rgba(102, 227, 255, 0.12);
+      }
+
+      .closing-block__qr-wrap {
+        margin: 12px auto 0;
+        display: block;
+        width: fit-content;
+        max-width: 100%;
+        border-radius: 8px;
+        background: #fff;
+        padding: 8px;
+        line-height: 0;
+      }
+      .closing-block__qr {
+        display: block;
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        image-rendering: auto;
+      }
+
       .callout {
         padding: 18px 20px;
         margin-top: 16px;
@@ -1793,20 +1832,29 @@ console.log(total + 1);`,
             "Best practice: validate or narrow parsed/API data before trusting a cast.",
         },
         {
-          title: "QA & formulation feedback",
+          kind: "closing",
+          title: "Q&A, feedback & Mentimeter",
           eyebrow: "Slide 36",
-          layout: "equal",
-          lead: "Before we close — a few prompts to capture what landed and how you want to use it.",
-          leftSection: {
-            title: "Reflect & share",
-            bullets: [
-              "<strong>Formulation:</strong> How will you phrase expectations, edge cases, and assertions in JS/TS after today?",
-              "<strong>QA lens:</strong> Where do types, async, or data shape show up most in your workflows (API, UI, automation)?",
-              "<strong>Feedback:</strong> What should we clarify, shorten, or go deeper on next time?",
-            ],
-          },
-          callout:
-            "<strong>Optional:</strong> jot notes for your team or bring questions to the follow-up channel — no wrong answers, just sharper formulations.",
+          lead: "Before we go — time for questions, a quick feedback form, and a live poll.",
+          closingBlocks: [
+            {
+              title: "Q&A",
+              text: "Open floor: ask about anything we covered, or how you’ll use JS/TS in your day-to-day work.",
+            },
+            {
+              title: "Feedback",
+              text: "Your answers help us improve the workshop. The form is short and anonymous unless you choose otherwise.",
+              link: "https://docs.google.com/forms/d/e/1FAIpQLSd78BJx5P-qEbIXnQIdoC7OoytO-Mc9twJxCg3T0CInmg6Z9w/viewform?usp=header",
+              linkLabel: "Open feedback form",
+            },
+            {
+              title: "Mentimeter",
+              text: "Go to <strong>menti.com</strong> and use code <strong>7888 8614</strong> — or scan the QR on the card below.",
+              qrImage: "assets/mentimeter-join.png",
+              qrAlt:
+                "Mentimeter: menti.com with access code 7888 8614, QR to join the poll",
+            },
+          ],
         },
       ];
 
@@ -1818,6 +1866,15 @@ console.log(total + 1);`,
           .replace(/</g, "&lt;")
           .replace(/>/g, "&gt;")
           .replace(/"/g, "&quot;");
+      }
+
+      function renderClosingBlockQr(b) {
+        if (!b.qrImage) return "";
+        const alt = escapeHtml(
+          b.qrAlt ||
+            "Mentimeter join: menti.com with access code, QR to join the poll",
+        );
+        return `<div class="closing-block__qr-wrap"><img class="closing-block__qr" src="${escapeHtml(b.qrImage)}" alt="${alt}" loading="lazy" decoding="async" /></div>`;
       }
 
       const JS_TS_KEYWORDS = new Set(
@@ -2265,6 +2322,29 @@ console.log(total + 1);`,
                 <div class="orb d">Better debugging</div>
               </div>
             </div>
+          </div>`;
+          } else if (slide.kind === "closing" && slide.closingBlocks?.length) {
+            const blocksHtml = slide.closingBlocks
+              .map(
+                (b) => `
+            <div class="mini-card closing-block">
+              <h3>${b.title}</h3>
+              <p>${b.text}</p>
+              ${renderClosingBlockQr(b)}
+              ${
+                b.link
+                  ? `<a class="closing-block__link" href="${b.link}" target="_blank" rel="noopener noreferrer">${b.linkLabel || "Open link"}</a>`
+                  : ""
+              }
+            </div>`,
+              )
+              .join("");
+            section.innerHTML = `
+          <div class="panel">
+            <div class="eyebrow">${slide.eyebrow}</div>
+            <h2 class="title">${slide.title}</h2>
+            ${slide.lead ? `<p class="lead">${slide.lead}</p>` : ""}
+            <div class="mini-grid three closing-grid">${blocksHtml}</div>
           </div>`;
           } else if (slide.agendaGroups || slide.agenda) {
             const agendaHtml = slide.agendaGroups
