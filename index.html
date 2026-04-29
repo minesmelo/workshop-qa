@@ -508,19 +508,6 @@
         color: #9aefff;
       }
 
-      .bullet-list--compact {
-        gap: 10px;
-      }
-      .bullet-list--compact li {
-        font-size: 0.88rem;
-        line-height: 1.38;
-      }
-      .bullet-list--compact li::before {
-        margin-top: 0.32rem;
-        width: 8px;
-        height: 8px;
-      }
-
       .mini-grid {
         display: grid;
         gap: 14px;
@@ -1278,7 +1265,6 @@
           layout: "equal",
           leftSection: {
             title: "Core points",
-            bulletListCompact: true,
             bullets: [
               "<strong>Input:</strong> arguments map to parameters when you call. <strong>Output:</strong> <code>return</code> sends a value — optional.",
               "Arrow functions (<code>=></code>) are shorter to write — handy for small helpers and callbacks.",
@@ -1310,12 +1296,12 @@
             title: "Core points",
             bullets: [
               "<code>if / else</code> handles branching logic.",
+              'Loops handle repetition — <code>for</code> (index), <code>for...of</code> (values), and <code>for...in</code> (keys).',
+              "<code>continue</code> skips the current iteration and moves to the next one.",
+              "<code>break</code> stops a process early.",
               "<code>switch</code> works well for multiple known cases.",
-              "Loops handle repetition.",
               '<code>while</code>: the condition is checked <span class="highlight">before</span> each iteration — if it is false at the start, the loop body never runs.',
               '<code>do...while</code>: the body runs <span class="highlight">once</span> first, then the condition is checked <span class="highlight">after</span> each iteration — so the body always executes at least once.',
-              "<code>break</code> stops a process early.",
-              "<code>continue</code> skips the current iteration and moves to the next one.",
             ],
           },
           callout:
@@ -2285,12 +2271,9 @@ console.log(total + 1);`,
           .join("");
       }
 
-      function renderBullets(items, compact) {
+      function renderBullets(items) {
         if (!items || !items.length) return "";
-        const listClass = compact
-          ? "bullet-list bullet-list--compact"
-          : "bullet-list";
-        return `<ul class="${listClass}">${items
+        return `<ul class="bullet-list">${items
           .map((item) => `<li><span>${item}</span></li>`)
           .join("")}</ul>`;
       }
@@ -2477,10 +2460,7 @@ console.log(total + 1);`,
                 ? `<div class="section-title">${slide.leftSection.title}</div>`
                 : ""
             }
-            ${renderBullets(
-              slide.leftSection.bullets,
-              slide.leftSection.bulletListCompact,
-            )}
+            ${renderBullets(slide.leftSection.bullets)}
             ${
               slide.callout
                 ? `<div class="callout${slide.calloutClass ? " " + slide.calloutClass : ""}">${slide.callout}</div>`
