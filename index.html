@@ -508,6 +508,19 @@
         color: #9aefff;
       }
 
+      .bullet-list--compact {
+        gap: 10px;
+      }
+      .bullet-list--compact li {
+        font-size: 0.88rem;
+        line-height: 1.38;
+      }
+      .bullet-list--compact li::before {
+        margin-top: 0.32rem;
+        width: 8px;
+        height: 8px;
+      }
+
       .mini-grid {
         display: grid;
         gap: 14px;
@@ -1265,16 +1278,29 @@
           layout: "equal",
           leftSection: {
             title: "Core points",
+            bulletListCompact: true,
             bullets: [
-              "Functions package reusable behavior.",
-              "Inputs go in, and output may come out.",
-              "<code>return</code> gives something back.",
-              "Arrow functions are shorter and common in callbacks.",
+              "<strong>Input:</strong> arguments map to parameters when you call. <strong>Output:</strong> <code>return</code> sends a value — optional.",
+              "Arrow functions (<code>=></code>) are shorter to write — handy for small helpers and callbacks.",
+              "<strong>Hoisting:</strong> function declarations are registered before your code runs top-to-bottom, so calls above the declaration still work. An arrow function isn’t hoisted that way — it’s created when its line runs, so calling it earlier tries to use a value that does not exist yet.",
             ],
           },
-          codeFile: `js/functions.js`,
+          codeExamples: [
+            {
+              title: "Function declaration (hoisted)",
+              file: "js/functions_10a_hoisting.js",
+            },
+            {
+              title: "Arrow functions & implicit return",
+              file: "js/functions_10b_arrows.js",
+            },
+            {
+              title: "Arrow functions are not hoisted",
+              file: "js/functions_10c_arrow_no_hoist.js",
+            },
+          ],
           callout:
-            "<strong>Real-life parallel:</strong> a function with return is like a coffee machine: input goes in, drink comes out.",
+            "<strong>Real-life parallel:</strong> a function with return is like a coffee machine: input goes in, drink comes out. <strong>Note:</strong> the third example throws on purpose — compare with the first.",
         },
         {
           title: "Conditionals & Loops",
@@ -1292,9 +1318,15 @@
               "<code>continue</code> skips the current iteration and moves to the next one.",
             ],
           },
-          codeFile: `js/loops.js`,
           callout:
             "<strong>Real-life parallel:</strong> airport security decision paths, route selection by ticket type, and checking every item on a checklist.",
+          codeExamples: [
+            { title: "If / else", file: "js/loops_11a_if_else.js" },
+            { title: "for, for...of, for...in", file: "js/loops_11b_for_loops.js" },
+            { title: "continue & break", file: "js/loops_11c_continue_break.js" },
+            { title: "switch", file: "js/loops_11d_switch.js" },
+            { title: "while & do...while", file: "js/loops_11e_while.js" },
+          ],
         },
         {
           title: "Array Built-in Methods: Transform & Iterate",
@@ -1664,7 +1696,8 @@
               "Prefer <code>unknown</code> for external data you do not trust yet.",
             ],
           },
-          code: `let rawAny: any = JSON.parse(body);\nrawAny.user.name.toUpperCase(); // no TypeScript warning\n\nlet rawUnknown: unknown = JSON.parse(body);\n\nif (typeof rawUnknown === 'object' && rawUnknown !== null) {\n  console.log('Now we can inspect it safely');\n}`,
+          codeFile: "ts/slide29_any_unknown.ts",
+          executedCode: false,
           callout:
             "<strong>Real-life parallel:</strong> <code>any</code> is letting someone through security with no checks. <code>unknown</code> is asking for ID before entry.",
         },
@@ -2252,9 +2285,12 @@ console.log(total + 1);`,
           .join("");
       }
 
-      function renderBullets(items) {
+      function renderBullets(items, compact) {
         if (!items || !items.length) return "";
-        return `<ul class="bullet-list">${items
+        const listClass = compact
+          ? "bullet-list bullet-list--compact"
+          : "bullet-list";
+        return `<ul class="${listClass}">${items
           .map((item) => `<li><span>${item}</span></li>`)
           .join("")}</ul>`;
       }
@@ -2441,7 +2477,10 @@ console.log(total + 1);`,
                 ? `<div class="section-title">${slide.leftSection.title}</div>`
                 : ""
             }
-            ${renderBullets(slide.leftSection.bullets)}
+            ${renderBullets(
+              slide.leftSection.bullets,
+              slide.leftSection.bulletListCompact,
+            )}
             ${
               slide.callout
                 ? `<div class="callout${slide.calloutClass ? " " + slide.calloutClass : ""}">${slide.callout}</div>`
